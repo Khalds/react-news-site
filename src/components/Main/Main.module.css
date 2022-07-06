@@ -1,0 +1,95 @@
+.Main {
+  width: 70%;
+  display: flex;
+  gap: 20px;
+  margin: 80px 0;
+}
+
+.main_big_block {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main_big_block h1 {
+  font-size: 42px;
+  font-weight: 500;
+}
+
+.Main h1 a {
+  color: #152535;
+}
+
+.Main h1 a:hover {
+  color: #ee002d;
+  transition: 1s;
+}
+
+.main_min {
+  width: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+}
+
+.min_item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.min_item h1 {
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+.news_img img {
+  width: 100%;
+}
+
+.news_actions {
+  display: flex;
+  gap: 20px;
+}
+
+.likes,
+.comments {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.likes span,
+.comments span {
+  color: #828282;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.category {
+  color: #ee002d;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.Main p {
+  color: #828282;
+  font-size: 15px;
+  line-height: 2.1;
+  font-weight: 500;
+}
+.Main p a {
+  color: #ee002d;
+  font-weight: 600;
+  font-size: 14px;
+}
+.likes:hover,
+.comments:hover {
+  cursor: pointer;
+}
+.news_actions span:hover {
+  color: #ee002d;
+}

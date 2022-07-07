@@ -1,0 +1,111 @@
+.PopularNewsSidebar {
+  flex: 1;
+}
+.sidebar_block {
+  background: #ee002d;
+  color: #fff;
+  padding: 15px;
+  width: 140px;
+  text-align: center;
+}
+
+.sidebar_header {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 100px;
+}
+
+.most_news_block {
+  background-color: #eff4f9;
+  padding: 50px 25px;
+}
+
+.sidebar_news {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.news_item {
+  display: flex;
+  gap: 20px;
+}
+
+.news_inf {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.news_idx {
+  color: #ee002d;
+  font-weight: 600;
+}
+
+.title a {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #152535;
+}
+
+.title a:hover {
+  color: #ee002d;
+  transition: 0.5s;
+}
+
+.most_news_block h1 {
+  color: #ee002d;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 31px;
+  font-weight: 400;
+}
+
+.date {
+  color: #828282;
+  font-weight: 500;
+}
+
+.subscribe_block {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 50px 20px;
+  text-align: center;
+  background: #02031c;
+}
+
+.subscribe_block h1 {
+  color: #ee002d;
+}
+
+.subscribe_block p {
+  color: #828282;
+  line-height: 2;
+}
+
+.subscribe_block input {
+  padding: 20px 30px;
+  font-size: 14px;
+  font-style: italic;
+  border: none;
+  outline: none;
+  background-color: #44425a;
+  color: #fff;
+  font-weight: 600;
+}
+
+.subscribe_block button {
+  background-color: #ee002d;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-style: italic;
+  padding: 20px;
+}
+
+.sidebar_items {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

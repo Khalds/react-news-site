@@ -1,0 +1,49 @@
+.Sidebar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.sidebar_item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.sidebar_item_img:hover {
+  cursor: pointer;
+}
+
+.sidebar_item_img img {
+  width: 100px;
+  height: 100px;
+}
+
+.sidebar_item_inf {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category a {
+  color: #ee002d;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.title h3 a {
+  color: #152535;
+  line-height: 1.6;
+}
+
+.title h3 a:hover {
+  color: #ee002d;
+  transition: 0.5s;
+}
+
+.date {
+  font-size: 14px;
+  color: #828282;
+  margin-bottom: 15px;
+}

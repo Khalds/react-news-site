@@ -1,0 +1,49 @@
+.footer {
+  background-color: #02031c;
+}
+
+.footer_inf {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  font-size: 18px;
+}
+.footer_logo h1 {
+  font-size: 30px;
+  color: #fff;
+  font-style: italic;
+}
+
+.footer a {
+  color: #828282;
+}
+
+.footer a:hover {
+  color: #fff;
+  transition: 1s;
+}
+
+.category ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contacts h3 {
+  color: #fff;
+}
+
+.copyright {
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+}

@@ -6,7 +6,7 @@ function Header() {
     <div className={styles.header}>
       <div className={styles.logo}>
         <h1>
-          <a href="">The Chechen News</a>
+          <a href="">The Intocode News</a>
         </h1>
       </div>
       <nav className={styles.header_nav}>

@@ -1,7 +1,20 @@
 .home_header {
   background: #ee002d;
 }
-.home_main {
+.home_container {
   width: 80%;
-  margin: 0 auto;
+  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.home_cont_top {
+  display: flex;
+  gap: 30px;
+}
+
+.home_cont_mid {
+  display: flex;
+  gap: 30px;
 }

@@ -1,14 +1,14 @@
 import React from "react"
-import styles from "./Main.module.css"
+import styles from "./LastNewsMain.module.css"
 
-const likeIcon =
+export const likeIcon =
   "https://preview.colorlib.com/theme/newspaper/img/core-img/xlike.png.pagespeed.ic.IMHrmFwawC.webp"
-const commentIcon =
+export const commentIcon =
   "https://preview.colorlib.com/theme/newspaper/img/core-img/xchat.png.pagespeed.ic.3ia8c3GYwe.webp"
 
-function Main() {
+function LastNewsMain() {
   return (
-    <div className={styles.Main}>
+    <div className={styles.LastNewsMain}>
       <div className={styles.main_big_block}>
         <div className={styles.news_img}>
           <img
@@ -16,8 +16,9 @@ function Main() {
             alt=""
           />
         </div>
-
-        <div className={styles.category}>Finance</div>
+        <div className={styles.category}>
+          <a href="">Finance</a>
+        </div>
         <div className={styles.title}>
           <h1>
             <a href="">
@@ -60,7 +61,9 @@ function Main() {
               alt=""
             />
           </div>
-          <div className={styles.category}>Finance</div>
+          <div className={styles.category}>
+            <a href="">Finance</a>
+          </div>
           <div className={styles.title}>
             <h1>
               <a href="">
@@ -87,7 +90,9 @@ function Main() {
               alt=""
             />
           </div>
-          <div className={styles.category}>Finance</div>
+          <div className={styles.category}>
+            <a href="">Finance</a>
+          </div>
           <div className={styles.title}>
             <h1>
               <a href="">
@@ -112,4 +117,4 @@ function Main() {
   )
 }
 
-export default Main
+export default LastNewsMain

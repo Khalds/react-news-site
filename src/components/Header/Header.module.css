@@ -1,10 +1,16 @@
 .header {
+}
+.header_inf {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 0;
-  margin: 0 auto;
   width: 80%;
+  margin: 0 auto;
+}
+
+.header_top {
+  padding: 30px 0;
+  background: #ee002d;
 }
 
 .header h1 a {
@@ -40,4 +46,33 @@
 
 .header_nav input::placeholder {
   color: #fff;
+}
+
+.header_category {
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  padding: 30px;
+}
+
+.header_category nav {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.header_category ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+  gap: 10%;
+}
+
+.header_category a {
+  color: #828282;
+}
+
+.header_category a:hover {
+  color: #ee002d;
+  transition: 0.5s;
 }

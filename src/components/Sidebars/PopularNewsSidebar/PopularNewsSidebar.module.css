@@ -104,6 +104,13 @@
   padding: 20px;
 }
 
+.subscribe_block button:hover {
+  color: #ee002d;
+  background-color: #fff;
+  transition: 1s;
+  cursor: pointer;
+}
+
 .sidebar_items {
   display: flex;
   flex-direction: column;

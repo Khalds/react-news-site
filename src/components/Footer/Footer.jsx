@@ -1,4 +1,5 @@
 import React from "react"
+import Category from "../Category/Category"
 
 import styles from "./Footer.module.css"
 
@@ -10,23 +11,7 @@ function Footer() {
           <h1>The Intocode News</h1>
         </div>
         <div className={styles.category}>
-          <ul>
-            <li>
-              <a href="">Finance</a>
-            </li>
-            <li>
-              <a href="">Politics</a>
-            </li>
-            <li>
-              <a href="">Health</a>
-            </li>
-            <li>
-              <a href="">Travel</a>
-            </li>
-            <li>
-              <a href="">Sports</a>
-            </li>
-          </ul>
+          <Category />
         </div>
         <div className={styles.contacts}>
           <h3>Contact:</h3>

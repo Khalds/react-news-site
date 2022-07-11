@@ -1,0 +1,79 @@
+.Sign {
+  width: 30%;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.wrapper {
+  box-shadow: rgba(242, 75, 75, 0.571) 0px 5px 15px 0px;
+  padding: 80px 40px;
+  color: #fff;
+  background: #ee002d;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.wrapper h1 {
+  font-style: italic;
+  font-size: 34px;
+  margin-bottom: 30px;
+}
+
+.wrapper button {
+  background-color: #ee002d;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 14px;
+  font-style: italic;
+  padding: 20px;
+}
+
+.wrapper button:hover {
+  color: #ee002d;
+  background-color: #fff;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.wrapper input {
+  padding: 20px 30px;
+  font-size: 16px;
+  font-style: italic;
+  border: none;
+  outline: none;
+  background-color: #fff;
+  color: #ee002c;
+  font-weight: 600;
+}
+
+.wrapper p {
+  font-size: 14px;
+}
+
+.wrapper p a {
+  color: #fff;
+  font-weight: 500;
+  border-bottom: 1px solid #fff;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.close a {
+  color: #fff;
+}
+
+.error {
+  color: #fff;
+}

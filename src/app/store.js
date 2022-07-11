@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { newsSlice } from "../features/News/newsSlice"
+import authSlice from "../features/auth/authSlice"
+import newsSlice from "../features/news/newsSlice"
+
 
 export const store = configureStore({
   reducer: {
+    auth: authSlice,
     news: newsSlice,
   },
 })
-
-export default newsSlice.reducer

@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import Category from "../Category/Category"
 import styles from "./Header.module.css"
 
@@ -9,16 +10,16 @@ function Header() {
         <div className={styles.header_inf}>
           <div className={styles.logo}>
             <h1>
-              <a href="">The Intocode News</a>
+              <Link to="/">The Intocode News</Link>
             </h1>
           </div>
           <nav className={styles.header_nav}>
             <ul>
               <li>
-                <a href="">Login</a>
+                <Link to="/signin">Login</Link>
               </li>
               <li>
-                <a href="">Register</a>
+                <Link to="/signup">Register</Link>
               </li>
               <li>
                 <input type="text" placeholder="Search" />

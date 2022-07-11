@@ -6,40 +6,28 @@ export const likeIcon =
 export const commentIcon =
   "https://preview.colorlib.com/theme/newspaper/img/core-img/xchat.png.pagespeed.ic.3ia8c3GYwe.webp"
 
-function LastNewsMain() {
+function LastNewsMain({ news }) {
   return (
     <div className={styles.LastNewsMain}>
       <div className={styles.main_big_block}>
         <div className={styles.news_img}>
-          <img
-            src="https://preview.colorlib.com/theme/newspaper/img/bg-img/x16.jpg.pagespeed.ic._cog5EESqN.webp"
-            alt=""
-          />
+          <img src={news.img} alt="" />
         </div>
         <div className={styles.category}>
           <a href="">Finance</a>
         </div>
         <div className={styles.title}>
           <h1>
-            <a href="">
-              Financial news: A new company is born today at the stock market
-            </a>
+            <a href="">{news.title}</a>
           </h1>
         </div>
         <div className={styles.author}>
           <p>
-            By <a href="">Khalid Abaev</a>
+            By <a href="">{news.author}</a>
           </p>
         </div>
         <div className={styles.text}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu
-            metus sit amet odio sodales placerat. Sed varius leo ac leo
-            fermentum, eu cursus nunc maximus. Integer convallis nisi nibh, et
-            ornare neque ullamcorper ac. Nam id congue lectus, a venenatis
-            massa. Maecenas justo libero, vulputate vel nunc id, blandit feugiat
-            sem.
-          </p>
+          <p>{news.text}</p>
         </div>
         <div className={styles.news_actions}>
           <div className={styles.likes}>

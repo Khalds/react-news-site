@@ -1,9 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import Category from "../Category/Category"
 import styles from "./Header.module.css"
 
 function Header() {
+  const catogories = useSelector((state) => state.news.category)
+  const dispatch = useDispatch()
+
+  console.log("EEEE", catogories)
+
+  // useEffect(() => {
+  //   dispatch(())
+  // }, [dispatch])
+
   return (
     <div className={styles.header}>
       <div className={styles.header_top}>
@@ -30,7 +40,11 @@ function Header() {
       </div>
       <div className={styles.header_category}>
         <nav>
-          <Category />
+          <ul>
+            {catogories.map((cat, idx) => {
+              return <Category key={idx} cat={cat} />
+            })}
+          </ul>
         </nav>
       </div>
     </div>

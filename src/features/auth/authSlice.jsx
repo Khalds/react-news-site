@@ -19,6 +19,7 @@ export const createUser = createAsyncThunk(
         },
         body: JSON.stringify({ login, password }),
       })
+
       const json = await res.json()
 
       if (json.error) {
@@ -80,7 +81,7 @@ export const authSlice = createSlice({
         state.signinUp = true
       })
       .addCase(createUser.pending, (state, action) => {
-        state.signUp = true
+        state.signUp = false
         state.error = null
       })
       .addCase(createUser.rejected, (state, action) => {
@@ -92,7 +93,7 @@ export const authSlice = createSlice({
         state.token = action.payload.token
       })
       .addCase(auth.pending, (state, action) => {
-        state.signinIn = true
+        state.signinIn = false
         state.error = null
       })
       .addCase(auth.rejected, (state, action) => {

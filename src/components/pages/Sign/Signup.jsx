@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { createUser } from "../../../features/auth/authSlice"
 
 import styles from "./Sign.module.css"
@@ -8,12 +8,12 @@ import styles from "./Sign.module.css"
 function Signup() {
   const dispatch = useDispatch()
 
-  const error = useSelector((state) => state)
-
-  console.log(error)
-
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const signinUp = useSelector((state) => state.auth.signinUp)
+  const error = useSelector((state) => state.auth.error)
 
   const handleChangeLogin = (e) => {
     setLogin(e.target.value)
@@ -29,7 +29,9 @@ function Signup() {
 
       setLogin("")
       setPassword("")
+      setErrorMessage("")
     } else {
+      setErrorMessage("Поле ввода не может быть пусты!")
     }
   }
 
@@ -39,8 +41,8 @@ function Signup() {
         <span className={styles.close}>
           <Link to="/">x</Link>
         </span>
-
         <h1>The Intocode News</h1>
+        <span className={styles.error}>{error || errorMessage}</span>
         <input
           type="text"
           placeholder="login"
@@ -53,11 +55,14 @@ function Signup() {
           value={password}
           onChange={handleChangePassword}
         />
-        <button onClick={handleSubmit}>register</button>
+        <button disabled={signinUp} onClick={handleSubmit}>
+          register
+        </button>
         <p>
           Have an account? <Link to="/signin">Sign in</Link>
         </p>
       </div>
+      {signinUp && <Navigate replace to={"/"} />}
     </div>
   )
 }

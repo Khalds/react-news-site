@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, Navigate } from "react-router-dom"
 import { auth } from "../../../features/auth/authSlice"
 
 import styles from "./Sign.module.css"
@@ -10,6 +10,11 @@ function Signin() {
 
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const signinIn = useSelector((state) => state.auth.signinIn)
+
+  const error = useSelector((state) => state.auth.error)
 
   const handleChangeLogin = (e) => {
     setLogin(e.target.value)
@@ -25,7 +30,9 @@ function Signin() {
 
       setLogin("")
       setPassword("")
+      setErrorMessage("")
     } else {
+      setErrorMessage("Поле ввода не может быть пусты!")
     }
   }
 
@@ -36,6 +43,8 @@ function Signin() {
           <Link to="/">x</Link>
         </span>
         <h1>The Intocode News</h1>
+        <span className={styles.error}>{error || errorMessage}</span>
+
         <input
           type="text"
           placeholder="login"
@@ -48,11 +57,14 @@ function Signin() {
           value={password}
           onChange={handleChangePassword}
         />
-        <button onClick={handleSubmit}>sign in</button>
+        <button disabled={signinIn} onClick={handleSubmit}>
+          sign in
+        </button>
         <p>
           Don't have an account yet? <Link to="/signup">Register</Link>
         </p>
       </div>
+      {signinIn && <Navigate replace to={"/"} />}
     </div>
   )
 }

@@ -11,7 +11,9 @@ function Footer() {
           <h1>The Intocode News</h1>
         </div>
         <div className={styles.category}>
-          <Category />
+          <ul>
+            <Category />
+          </ul>
         </div>
         <div className={styles.contacts}>
           <h3>Contact:</h3>

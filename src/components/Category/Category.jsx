@@ -1,10 +1,19 @@
 import React from "react"
+import { useSelector } from "react-redux"
 
-function Category({ cat }) {
+function Category() {
+  const catigories = useSelector((state) => state.news.category)
+
   return (
-    <li>
-      <a href="">{cat}</a>
-    </li>
+    <>
+      {catigories.map((cat) => {
+        return (
+          <li>
+            <a href="">{cat.name}</a>
+          </li>
+        )
+      })}
+    </>
   )
 }
 

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 
 import styles from "./LastNewsSidebar.module.css"
 
-function Sidebar() {
+function LastNewsSidebar() {
   const newss = useSelector((state) => state.news.news)
 
   return (
@@ -36,4 +36,4 @@ function Sidebar() {
   )
 }
 
-export default Sidebar
+export default LastNewsSidebar

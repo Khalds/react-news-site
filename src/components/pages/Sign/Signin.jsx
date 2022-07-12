@@ -12,7 +12,7 @@ function Signin() {
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
 
-  const signinIn = useSelector((state) => state.auth.signinIn)
+  const signIn = useSelector((state) => state.auth.signIn)
 
   const error = useSelector((state) => state.auth.error)
 
@@ -57,14 +57,14 @@ function Signin() {
           value={password}
           onChange={handleChangePassword}
         />
-        <button disabled={signinIn} onClick={handleSubmit}>
+        <button disabled={signIn} onClick={handleSubmit}>
           sign in
         </button>
         <p>
           Don't have an account yet? <Link to="/signup">Register</Link>
         </p>
       </div>
-      {signinIn && <Navigate replace to={"/"} />}
+      {signIn && <Navigate replace to={"/"} />}
     </div>
   )
 }

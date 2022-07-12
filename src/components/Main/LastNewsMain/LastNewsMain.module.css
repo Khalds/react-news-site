@@ -32,13 +32,13 @@
   gap: 20px;
 }
 
-.min_item {
+.news_item {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-.min_item h1 {
+.news_item h1 {
   font-size: 18px;
   line-height: 1.55;
   font-weight: 500;
@@ -46,6 +46,9 @@
 
 .news_img img {
   width: 100%;
+
+  object-fit: cover;
+  object-position: 50% 10%;
 }
 
 .news_actions {

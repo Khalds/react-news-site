@@ -1,7 +1,10 @@
 import React from "react"
+import { useSelector } from "react-redux"
 import styles from "./PopularNewsSidebar.module.css"
 
 function PopularNewsSidebar() {
+  const newses = useSelector((state) => state.news.news)
+
   return (
     <div className={styles.PopularNewsSidebar}>
       <div className={styles.sidebar_header}>
@@ -14,63 +17,23 @@ function PopularNewsSidebar() {
         <div className={styles.most_news_block}>
           <h1>4 Most Popular News</h1>
           <div className={styles.sidebar_news}>
-            <div className={styles.news_item}>
-              <div className={styles.news_idx}>1.</div>
-              <div className={styles.news_inf}>
-                <div className={styles.title}>
-                  <h6>
-                    <a href="">
-                      Amet, consectetur adipiscing elit. Nam eu metus sit amet
-                      odio sodales.
-                    </a>
-                  </h6>
+            {newses.slice(0, 4).map((news, idx) => {
+              return (
+                <div className={styles.news_item}>
+                  <div className={styles.news_idx}>{idx + 1}.</div>
+                  <div className={styles.news_inf}>
+                    <div className={styles.title}>
+                      <h6>
+                        <a href="">
+                          {news.title.split(" ").slice(0, 12).join(" ") + "..."}
+                        </a>
+                      </h6>
+                    </div>
+                    <div className={styles.date}>APRIL 14, 2018</div>
+                  </div>
                 </div>
-                <div className={styles.date}>APRIL 14, 2018</div>
-              </div>
-            </div>
-
-            <div className={styles.news_item}>
-              <div className={styles.news_idx}>2.</div>
-              <div className={styles.news_inf}>
-                <div className={styles.title}>
-                  <h6>
-                    <a href="">
-                      Amet, consectetur adipiscing elit. Nam eu metus sit amet
-                      odio sodales.
-                    </a>
-                  </h6>
-                </div>
-                <div className={styles.date}>APRIL 14, 2018</div>
-              </div>
-            </div>
-            <div className={styles.news_item}>
-              <div className={styles.news_idx}>3.</div>
-              <div className={styles.news_inf}>
-                <div className={styles.title}>
-                  <h6>
-                    <a href="">
-                      Amet, consectetur adipiscing elit. Nam eu metus sit amet
-                      odio sodales.
-                    </a>
-                  </h6>
-                </div>
-                <div className={styles.date}>APRIL 14, 2018</div>
-              </div>
-            </div>
-            <div className={styles.news_item}>
-              <div className={styles.news_idx}>4.</div>
-              <div className={styles.news_inf}>
-                <div className={styles.title}>
-                  <h6>
-                    <a href="">
-                      Amet, consectetur adipiscing elit. Nam eu metus sit amet
-                      odio sodales.
-                    </a>
-                  </h6>
-                </div>
-                <div className={styles.date}>APRIL 14, 2018</div>
-              </div>
-            </div>
+              )
+            })}
           </div>
         </div>
         <div className={styles.subscribe_block}>

@@ -76,28 +76,29 @@ export const authSlice = createSlice({
         state.token = null
         state.user = null
         state.login = null
+        state.signIn = false
       })
       .addCase(createUser.fulfilled, (state, action) => {
-        state.signinUp = true
+        state.signUp = true
       })
       .addCase(createUser.pending, (state, action) => {
         state.signUp = false
         state.error = null
       })
       .addCase(createUser.rejected, (state, action) => {
-        state.signinUp = false
+        state.signUp = false
         state.error = action.payload
       })
       .addCase(auth.fulfilled, (state, action) => {
-        state.signinIn = true
+        state.signIn = true
         state.token = action.payload.token
       })
       .addCase(auth.pending, (state, action) => {
-        state.signinIn = false
+        state.signIn = false
         state.error = null
       })
       .addCase(auth.rejected, (state, action) => {
-        state.signinIn = false
+        state.signIn = false
         state.error = action.payload
       })
   },

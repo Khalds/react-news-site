@@ -17,6 +17,9 @@
 .sidebar_item_img img {
   width: 100px;
   height: 100px;
+
+  object-fit: cover;
+  object-position: 50% 10%;
 }
 
 .sidebar_item_inf {

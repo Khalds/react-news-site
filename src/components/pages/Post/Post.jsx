@@ -1,6 +1,8 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
+import Comments from "../../Comments/Comments"
 import Footer from "../../Footer/Footer"
 import Header from "../../Header/Header"
 import LastNewsSidebar from "../../Sidebars/LastNewsSidebar/LastNewsSidebar"
@@ -9,12 +11,14 @@ import styles from "./Post.module.css"
 
 function Post() {
   const newses = useSelector((state) => state.news.news)
+  const { id } = useParams()
+
   return (
     <div className={styles.Post}>
       <Header />
       <div className={styles.main}>
         {newses.map((newsOne, idx) => {
-          if (idx < 1) {
+          if (id === newsOne._id)
             return (
               <div key={idx} className={styles.main_post}>
                 <div className={styles.news_img}>
@@ -30,7 +34,7 @@ function Post() {
                 </div>
                 <div className={styles.author}>
                   <p>
-                    By <a href="">{newsOne.author}</a>
+                    By <a href="">{newsOne.author.login}</a>
                   </p>
                 </div>
                 <div className={styles.text}>
@@ -46,11 +50,12 @@ function Post() {
                     <span className={styles.comment_count}>10</span>
                   </div>
                 </div>
+                <div className={styles.Comments}>
+                  <Comments />
+                </div>
               </div>
             )
-          }
         })}
-
         <div className={styles.side}>
           <LastNewsSidebar />
         </div>

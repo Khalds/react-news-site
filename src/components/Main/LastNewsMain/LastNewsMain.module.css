@@ -13,6 +13,10 @@
   gap: 20px;
 }
 
+.news_big_item .news_img img {
+  height: 300px;
+}
+
 .main_big_block h1 {
   font-size: 38px;
   font-weight: 500;
@@ -38,6 +42,10 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+.news_item .news_img img {
+  height: 200px;
 }
 
 .news_item h1 {

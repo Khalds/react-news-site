@@ -1,5 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import styles from "./PopularNewsSidebar.module.css"
 
 function PopularNewsSidebar() {
@@ -25,10 +26,10 @@ function PopularNewsSidebar() {
                     <div className={styles.news_inf}>
                       <div className={styles.title}>
                         <h6>
-                          <a href="">
+                          <Link to={`/news/${news._id}`}>
                             {news.title.split(" ").slice(0, 12).join(" ") +
                               "..."}
-                          </a>
+                          </Link>
                         </h6>
                       </div>
                       <div className={styles.date}>APRIL 14, 2018</div>

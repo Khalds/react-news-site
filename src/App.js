@@ -18,7 +18,7 @@ function App() {
         <Route path="/" exact element={<Home />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/post" element={<Post />} />
+        <Route path="/news/:id" element={<Post />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </div>

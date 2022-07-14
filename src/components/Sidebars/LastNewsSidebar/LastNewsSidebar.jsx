@@ -1,5 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 
 import styles from "./LastNewsSidebar.module.css"
 
@@ -13,17 +14,19 @@ function LastNewsSidebar() {
           return (
             <div key={idx} className={styles.sidebar_item}>
               <div className={styles.sidebar_item_img}>
-                <img src={news.img} alt="img" />
+                <Link to={`/news/${news._id}`}>
+                  <img src={news.img} alt="img" />
+                </Link>
               </div>
               <div className={styles.sidebar_item_inf}>
                 <div className={styles.category}>
-                  <a href="">Finance</a>
+                  <Link to={`/news/${news._id}`}>Finance</Link>
                 </div>
                 <div className={styles.title}>
                   <h3>
-                    <a href="">
+                    <Link to={`/news/${news._id}`}>
                       {news.title.split(" ").slice(0, 9).join(" ") + "..."}
-                    </a>
+                    </Link>
                   </h3>
                 </div>
                 <div className={styles.date}>

@@ -1,5 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
 import Footer from "../../Footer/Footer"
 
@@ -22,16 +23,18 @@ function PopularNewsMain() {
             return (
               <div key={idx} className={styles.news_item}>
                 <div className={styles.news_img}>
-                  <img src={news.img} alt="img" />
+                  <Link to={`/news/${news._id}`}>
+                    <img src={news.img} alt="img" />
+                  </Link>
                 </div>
                 <div className={styles.category}>
-                  <a href="">Finance</a>
+                  <Link to={`/news/${news._id}`}>Finance</Link>
                 </div>
                 <div className={styles.title}>
                   <h1>
-                    <a href="">
+                    <Link to={`/news/${news._id}`}>
                       {news.title.split(" ").slice(0, 18).join(" ") + "..."}
-                    </a>
+                    </Link>
                   </h1>
                 </div>
                 <div className={styles.news_actions}>
@@ -39,10 +42,12 @@ function PopularNewsMain() {
                     <img className={styles.like_icon} src={likeIcon} />
                     <span className={styles.like_count}>392</span>
                   </div>
-                  <div className={styles.comments}>
-                    <img className={styles.comment_icon} src={commentIcon} />
-                    <span className={styles.comment_count}>10</span>
-                  </div>
+                  <Link to={`/news/${news._id}`}>
+                    <div className={styles.comments}>
+                      <img className={styles.comment_icon} src={commentIcon} />
+                      <span className={styles.comment_count}>10</span>
+                    </div>
+                  </Link>
                 </div>
               </div>
             )

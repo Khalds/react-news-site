@@ -2,7 +2,6 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
-import Footer from "../../Footer/Footer"
 
 import styles from "./PopularNewsMain.module.css"
 

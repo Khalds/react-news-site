@@ -1,6 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
 import Comments from "../../Comments/Comments"
 import Footer from "../../Footer/Footer"
@@ -25,16 +25,19 @@ function Post() {
                   <img src={newsOne.img} alt="img" />
                 </div>
                 <div className={styles.category}>
-                  <a href="">Finance</a>
+                  <Link to={`/news/${newsOne._id}`}>Finance</Link>
                 </div>
                 <div className={styles.title}>
                   <h1>
-                    <a href="">{newsOne.title}</a>
+                    <Link to={`/news/${newsOne._id}`}>{newsOne.title}</Link>
                   </h1>
                 </div>
                 <div className={styles.author}>
                   <p>
-                    By <a href="">{newsOne.author.login}</a>
+                    By{" "}
+                    <Link to={`/news/${newsOne._id}`}>
+                      {newsOne.author.login}
+                    </Link>
                   </p>
                 </div>
                 <div className={styles.text}>
@@ -51,7 +54,7 @@ function Post() {
                   </div>
                 </div>
                 <div className={styles.Comments}>
-                  <Comments />
+                  <Comments id={id} />
                 </div>
               </div>
             )

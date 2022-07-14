@@ -1,0 +1,46 @@
+.Comments h1 {
+  color: #ee002d;
+  margin-bottom: 20px;
+}
+
+.com_list {
+  padding-left: 40px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.com_input {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.com_input h2 {
+  color: #393939;
+}
+
+.com_input input {
+  padding: 10px 15px 5px 15px;
+  width: 35%;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #828282;
+  cursor: pointer;
+  color: #393939;
+  font-weight: 500;
+}
+
+.icon {
+  height: 25px;
+  width: 25px;
+  padding: 10px;
+  cursor: pointer;
+  color: #393939;
+}
+.icon:active {
+  color: #ee002d;
+}

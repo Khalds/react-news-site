@@ -5,7 +5,6 @@ import { commentIcon, likeIcon } from "../../../App"
 import styles from "./LastNewsMain.module.css"
 
 function MainBigItem({ news, idx }) {
-  console.log(news.author.login)
   return (
     <div key={idx} className={styles.news_big_item}>
       <div className={styles.news_img}>

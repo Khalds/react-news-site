@@ -5,6 +5,7 @@ const initialState = {
   signUp: false,
   error: null,
   token: localStorage.getItem("token"),
+  userId: localStorage.getItem("userId"),
   login: localStorage.getItem("login"),
 }
 

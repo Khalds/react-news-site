@@ -17,6 +17,7 @@ const initialState = {
     },
   ],
   error: null,
+  loading: null,
 }
 
 export const fetchNews = createAsyncThunk("news/fetch", async (_, thunkAPI) => {

@@ -6,9 +6,9 @@ function Category() {
 
   return (
     <>
-      {catigories.map((cat) => {
+      {catigories.map((cat, idx) => {
         return (
-          <li>
+          <li key={idx}>
             <a href="">{cat.name}</a>
           </li>
         )

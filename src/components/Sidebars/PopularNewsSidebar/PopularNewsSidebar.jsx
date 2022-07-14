@@ -17,22 +17,24 @@ function PopularNewsSidebar() {
         <div className={styles.most_news_block}>
           <h1>4 Most Popular News</h1>
           <div className={styles.sidebar_news}>
-            {newses.slice(0, 4).map((news, idx) => {
-              return (
-                <div className={styles.news_item}>
-                  <div className={styles.news_idx}>{idx + 1}.</div>
-                  <div className={styles.news_inf}>
-                    <div className={styles.title}>
-                      <h6>
-                        <a href="">
-                          {news.title.split(" ").slice(0, 12).join(" ") + "..."}
-                        </a>
-                      </h6>
+            {newses.map((news, idx) => {
+              if (idx < 4)
+                return (
+                  <div key={idx} className={styles.news_item}>
+                    <div className={styles.news_idx}>{idx + 1}.</div>
+                    <div className={styles.news_inf}>
+                      <div className={styles.title}>
+                        <h6>
+                          <a href="">
+                            {news.title.split(" ").slice(0, 12).join(" ") +
+                              "..."}
+                          </a>
+                        </h6>
+                      </div>
+                      <div className={styles.date}>APRIL 14, 2018</div>
                     </div>
-                    <div className={styles.date}>APRIL 14, 2018</div>
                   </div>
-                </div>
-              )
+                )
             })}
           </div>
         </div>

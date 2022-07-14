@@ -6,8 +6,8 @@ import Category from "../Category/Category"
 import styles from "./Header.module.css"
 
 function Header() {
-  const signIn = useSelector((state) => state.auth.signIn)
-  console.log(signIn)
+  const token = useSelector((state) => state.auth.token)
+
   const dispatch = useDispatch()
 
   const logOut = () => {
@@ -25,12 +25,14 @@ function Header() {
           </div>
           <nav className={styles.header_nav}>
             <ul>
-              {signIn && (
+              {token && (
                 <li>
-                  <Link onClick={logOut}>Log Out</Link>
+                  <a href="/" onClick={logOut}>
+                    Log Out
+                  </a>
                 </li>
               )}
-              {!signIn && (
+              {!token && (
                 <>
                   <li>
                     <Link to="/signin">Login</Link>
@@ -40,7 +42,6 @@ function Header() {
                   </li>
                 </>
               )}
-
               <li>
                 <input type="text" placeholder="Search" />
               </li>

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, Navigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { auth } from "../../../features/auth/authSlice"
 
 import styles from "./Sign.module.css"
@@ -12,9 +12,10 @@ function Signin() {
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
 
-  const signIn = useSelector((state) => state.auth.signIn)
+  const token = useSelector((state) => state.auth.token)
 
   const error = useSelector((state) => state.auth.error)
+  const navigate = useNavigate()
 
   const handleChangeLogin = (e) => {
     setLogin(e.target.value)
@@ -57,14 +58,12 @@ function Signin() {
           value={password}
           onChange={handleChangePassword}
         />
-        <button disabled={signIn} onClick={handleSubmit}>
-          sign in
-        </button>
+        <button onClick={handleSubmit}>sign in</button>
         <p>
           Don't have an account yet? <Link to="/signup">Register</Link>
         </p>
       </div>
-      {signIn && <Navigate replace to={"/"} />}
+      {token && navigate("/")}
     </div>
   )
 }

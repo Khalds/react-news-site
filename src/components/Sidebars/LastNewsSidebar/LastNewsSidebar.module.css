@@ -10,6 +10,10 @@
   border-bottom: 1px solid #ccc;
 }
 
+.sidebar_item:last-child {
+  border-bottom: none;
+}
+
 .sidebar_item_img:hover {
   cursor: pointer;
 }

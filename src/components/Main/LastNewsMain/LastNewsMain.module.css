@@ -6,6 +6,8 @@
 
 .main_big_block {
   width: 60%;
+}
+.news_big_item {
   display: flex;
   flex-direction: column;
   gap: 20px;

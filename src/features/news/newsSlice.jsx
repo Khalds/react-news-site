@@ -2,20 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   news: [],
-  category: [
-    {
-      name: "Politic",
-    },
-    {
-      name: "Health",
-    },
-    {
-      name: "Sport",
-    },
-    {
-      name: "Travel",
-    },
-  ],
   error: null,
   loading: null,
 }

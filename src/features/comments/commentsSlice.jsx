@@ -6,8 +6,27 @@ const initialState = {
   loading: null,
 }
 
-export const fetchCommentsById = createAsyncThunk(
+export const fetchComments = createAsyncThunk(
   "comments/fetch",
+  async (_, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:4000/comments`)
+
+      const json = await res.json()
+
+      if (json.error) {
+        return thunkAPI.rejectWithValue(json.error)
+      } else {
+        return thunkAPI.fulfillWithValue(json)
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e)
+    }
+  }
+)
+
+export const fetchCommentsById = createAsyncThunk(
+  "comment/fetch",
   async (id, thunkAPI) => {
     try {
       const res = await fetch(`http://localhost:4000/comments/${id}`)
@@ -63,6 +82,11 @@ export const commentsSlice = createSlice({
       .addCase(fetchCommentsById.rejected, (state, action) => {
         state.error = "При запросе на сервер произошла ошибка"
         state.loading = false
+      })
+      .addCase(fetchComments.fulfilled, (state, action) => {
+        state.comments = action.payload
+        state.loading = false
+        state.error = null
       })
       .addCase(postComment.fulfilled, (state, action) => {
         state.comments.push(action.payload)

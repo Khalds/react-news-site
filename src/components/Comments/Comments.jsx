@@ -12,8 +12,11 @@ import { fetchUser } from "../../features/auth/authSlice"
 
 function Comments({ id }) {
   const comments = useSelector((state) => state.coms.comments)
+  const token = useSelector((state) => state.auth.token)
 
   const [text, setText] = useState("")
+  const [open, setOpen] = useState("false")
+  const [openText, setOpenText] = useState("Еще коментарии")
 
   const userId = localStorage.getItem("userId")
 
@@ -36,28 +39,53 @@ function Comments({ id }) {
     }
   }
 
+  const changeOpen = () => {
+    setOpen(!open)
+
+    if (open) {
+      setOpenText("Скрыть коментарии")
+    } else {
+      setOpenText("Еще коментарии")
+    }
+  }
+
   return (
     <div className={styles.Comments}>
       <h1>{comments.length} Comments </h1>
       <hr />
       <div className={styles.com_list}>
-        {comments.map((coms, idx) => {
-          return <Comment coms={coms} idx={idx} />
-        })}
-      </div>
-      <div className={styles.com_input}>
-        <input
-          placeholder="Add comment..."
-          type="text"
-          value={text}
-          onChange={(e) => handleSubmit(e)}
-        />
+        {open &&
+          comments
+            .map((coms) => {
+              return <Comment key={coms._id} coms={coms} />
+            })
+            .slice(0, 2)}
+        {!open &&
+          comments.map((coms) => {
+            return <Comment key={coms._id} coms={coms} />
+          })}
 
-        <AiFillPlusCircle
-          className={styles.icon}
-          onClick={(e) => addComent(text)}
-        />
+        {comments.length > 2 && (
+          <span className={styles.open_com} onClick={changeOpen}>
+            {openText}
+          </span>
+        )}
       </div>
+      {token && (
+        <div className={styles.com_input}>
+          <input
+            placeholder="Add comment..."
+            type="text"
+            value={text}
+            onChange={(e) => handleSubmit(e)}
+          />
+
+          <AiFillPlusCircle
+            className={styles.icon}
+            onClick={(e) => addComent(text)}
+          />
+        </div>
+      )}
     </div>
   )
 }

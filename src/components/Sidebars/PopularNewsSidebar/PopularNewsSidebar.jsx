@@ -18,10 +18,10 @@ function PopularNewsSidebar() {
         <div className={styles.most_news_block}>
           <h1>4 Most Popular News</h1>
           <div className={styles.sidebar_news}>
-            {newses.map((news, idx) => {
-              if (idx < 4)
+            {newses
+              .map((news, idx) => {
                 return (
-                  <div key={idx} className={styles.news_item}>
+                  <div key={news._id} className={styles.news_item}>
                     <div className={styles.news_idx}>{idx + 1}.</div>
                     <div className={styles.news_inf}>
                       <div className={styles.title}>
@@ -36,7 +36,8 @@ function PopularNewsSidebar() {
                     </div>
                   </div>
                 )
-            })}
+              })
+              .slice(0, 4)}
           </div>
         </div>
         <div className={styles.subscribe_block}>

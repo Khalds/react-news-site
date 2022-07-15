@@ -1,18 +1,28 @@
-import React from "react"
-import { useSelector } from "react-redux"
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
+import { fetchCategory } from "../../features/category/categorySlice"
 
 function Category() {
-  const catigories = useSelector((state) => state.news.category)
+  const catigories = useSelector((state) => state.cat.categories)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchCategory())
+  }, [dispatch])
 
   return (
     <>
-      {catigories.map((cat, idx) => {
-        return (
-          <li key={idx}>
-            <a href="">{cat.name}</a>
-          </li>
-        )
-      })}
+      {catigories
+        .map((cat) => {
+          return (
+            <li key={cat._id}>
+              <Link to="/">{cat.name}</Link>
+            </li>
+          )
+        })
+        .slice(0, 6)}
     </>
   )
 }

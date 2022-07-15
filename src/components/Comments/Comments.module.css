@@ -20,7 +20,7 @@
 
 .com_input input {
   padding: 10px 15px 5px 15px;
-  width: 35%;
+  width: 40%;
   font-size: 16px;
   border: none;
   outline: none;
@@ -28,6 +28,7 @@
   cursor: pointer;
   color: #393939;
   font-weight: 500;
+  margin-top: 50px;
 }
 
 .icon {
@@ -39,4 +40,12 @@
 }
 .icon:active {
   color: #ee002d;
+}
+
+.open_com {
+  color: #ee002d;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  align-self: end;
 }

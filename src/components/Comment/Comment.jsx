@@ -4,7 +4,7 @@ import { fetchUser } from "../../features/auth/authSlice"
 
 import styles from "./Comment.module.css"
 
-function Comment({ coms, idx }) {
+function Comment({ coms }) {
   const users = useSelector((state) => state.auth.users)
 
   const dispatch = useDispatch()
@@ -14,12 +14,10 @@ function Comment({ coms, idx }) {
   }, [dispatch])
 
   return (
-    <div key={idx} className={styles.com_item}>
+    <div key={coms._id} className={styles.com_item}>
       <div className={styles.user_name}>
         {users.map((user) => {
-          if (coms.user === user._id) {
-            return <div>{user.login}</div>
-          }
+          if (coms.user === user._id) return user.login
         })}
       </div>
       <div className={styles.user_text}>{coms.text}</div>

@@ -18,14 +18,10 @@
   gap: 10px;
 }
 
-.com_input h2 {
-  color: #393939;
-}
-
 .com_input input {
   padding: 10px 15px 5px 15px;
   width: 35%;
-  font-size: 14px;
+  font-size: 16px;
   border: none;
   outline: none;
   border-bottom: 1px solid #828282;

@@ -29,16 +29,15 @@ export const postComment = createAsyncThunk(
   "comments/post",
   async ({ text, userId, id }, thunkAPI) => {
     const state = thunkAPI.getState()
-
     try {
       const res = await fetch(`http://localhost:4000/comments/${id}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${state.auth.token}`,
-          "Content-Type": "auth/json",
+          "Content-Type": "application/json",
         },
 
-        body: JSON.stringify({ text: text, userId: userId, news: id }),
+        body: JSON.stringify({ text: text, user: userId, news: id }),
       })
       return await res.json()
     } catch (e) {
@@ -67,6 +66,7 @@ export const commentsSlice = createSlice({
       })
       .addCase(postComment.fulfilled, (state, action) => {
         state.comments.push(action.payload)
+        state.loading = false
       })
       .addCase(postComment.pending, (state, action) => {
         state.loading = true

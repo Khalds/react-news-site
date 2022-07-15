@@ -8,9 +8,11 @@ import {
 } from "../../features/comments/commentsSlice"
 
 import { AiFillPlusCircle } from "react-icons/ai"
+import { fetchUser } from "../../features/auth/authSlice"
 
 function Comments({ id }) {
   const comments = useSelector((state) => state.coms.comments)
+
   const [text, setText] = useState("")
 
   const userId = localStorage.getItem("userId")
@@ -18,6 +20,7 @@ function Comments({ id }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(fetchUser())
     dispatch(fetchCommentsById(id))
   }, [dispatch])
 
@@ -25,7 +28,7 @@ function Comments({ id }) {
     setText(e.target.value)
   }
 
-  const addComent = (text, id, userId) => {
+  const addComent = (text) => {
     if (text) {
       dispatch(postComment({ text, id, userId }))
 
@@ -43,10 +46,17 @@ function Comments({ id }) {
         })}
       </div>
       <div className={styles.com_input}>
-        <h2>Add comment:</h2>
-        <input type="text" value={text} onChange={(e) => handleSubmit(e)} />
+        <input
+          placeholder="Add comment..."
+          type="text"
+          value={text}
+          onChange={(e) => handleSubmit(e)}
+        />
 
-        <AiFillPlusCircle className={styles.icon} onClick={addComent} />
+        <AiFillPlusCircle
+          className={styles.icon}
+          onClick={(e) => addComent(text)}
+        />
       </div>
     </div>
   )

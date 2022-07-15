@@ -24,7 +24,7 @@ function MainBigItem({ news, idx }) {
       </div>
       <div className={styles.author}>
         <p>
-          By <a href="">{news.author.login}</a>
+          By <a href="">{news.author}</a>
         </p>
       </div>
       <div className={styles.text}>

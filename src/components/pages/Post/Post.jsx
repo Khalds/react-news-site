@@ -1,7 +1,8 @@
-import React from "react"
-import { useSelector } from "react-redux"
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
+import { fetchNews } from "../../../features/news/newsSlice"
 import Comments from "../../Comments/Comments"
 import Footer from "../../Footer/Footer"
 import Header from "../../Header/Header"
@@ -12,6 +13,12 @@ import styles from "./Post.module.css"
 function Post() {
   const newses = useSelector((state) => state.news.news)
   const { id } = useParams()
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchNews())
+  }, [dispatch])
 
   return (
     <div className={styles.Post}>
@@ -34,10 +41,7 @@ function Post() {
                 </div>
                 <div className={styles.author}>
                   <p>
-                    By{" "}
-                    <Link to={`/news/${newsOne._id}`}>
-                      {newsOne.author.login}
-                    </Link>
+                    By <Link to={`/news/${newsOne._id}`}>{newsOne.author}</Link>
                   </p>
                 </div>
                 <div className={styles.text}>

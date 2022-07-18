@@ -65,6 +65,24 @@ export const postComment = createAsyncThunk(
   }
 )
 
+export const removeComments = createAsyncThunk(
+  "comment/remove",
+  async (id, thunkAPI) => {
+    const state = thunkAPI.getState()
+    try {
+      await fetch(`http://localhost:4000/comments/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${state.auth.token}`,
+        },
+      })
+      return id
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message)
+    }
+  }
+)
+
 export const commentsSlice = createSlice({
   name: "comments",
   initialState,
@@ -97,6 +115,14 @@ export const commentsSlice = createSlice({
       })
       .addCase(postComment.rejected, (state, action) => {
         state.loading = false
+        state.error = action.payload
+      })
+      .addCase(removeComments.fulfilled, (state, action) => {
+        state.comments = state.comments.filter((com) => {
+          return com._id !== action.payload
+        })
+      })
+      .addCase(removeComments.rejected, (state, action) => {
         state.error = action.payload
       })
   },

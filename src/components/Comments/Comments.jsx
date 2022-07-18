@@ -7,7 +7,8 @@ import {
   postComment,
 } from "../../features/comments/commentsSlice"
 
-import { AiFillPlusCircle } from "react-icons/ai"
+import { AiFillPlusCircle, AiOutlineArrowDown } from "react-icons/ai"
+
 import { fetchUser } from "../../features/auth/authSlice"
 
 function Comments({ id }) {
@@ -16,7 +17,7 @@ function Comments({ id }) {
 
   const [text, setText] = useState("")
   const [open, setOpen] = useState("false")
-  const [openText, setOpenText] = useState("Еще коментарии")
+  const [openText, setOpenText] = useState("Еще коментарии ▼")
 
   const userId = localStorage.getItem("userId")
 
@@ -43,9 +44,9 @@ function Comments({ id }) {
     setOpen(!open)
 
     if (open) {
-      setOpenText("Скрыть коментарии")
+      setOpenText("Скрыть коментарии ▲")
     } else {
-      setOpenText("Еще коментарии")
+      setOpenText("Еще коментарии ▼")
     }
   }
 
@@ -53,7 +54,11 @@ function Comments({ id }) {
     <div className={styles.Comments}>
       <h1>{comments.length} Comments </h1>
       <hr />
-      <div className={styles.com_list}>
+      <div
+        className={
+          comments.length > 0 ? styles.com_list_active : styles.com_list
+        }
+      >
         {open &&
           comments
             .map((coms) => {

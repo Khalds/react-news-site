@@ -62,6 +62,51 @@ export const fetchNews = createAsyncThunk("news/fetch", async (_, thunkAPI) => {
 //   }
 // )
 
+export const addLike = createAsyncThunk(
+  "news/patch",
+  async ({ id, userId }, thunkAPI) => {
+    const state = thunkAPI.getState()
+    try {
+      const res = await fetch(`http://localhost:4000/news/${id}/like`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${state.auth.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          like: userId,
+        }),
+      })
+      console.log(id, userId)
+      return res.json(res)
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message)
+    }
+  }
+)
+
+// export const disLike = createAsyncThunk(
+//   "news/patch",
+//   async ({ id, userId }, thunkAPI) => {
+//     const state = thunkAPI.getState()
+//     try {
+//       const res = await fetch(`http://localhost:4000/news/${id}/dislike`, {
+//         method: "PATCH",
+//         headers: {
+//           Authorization: `Bearer ${state.auth.token}`,
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//           like: userId,
+//         }),
+//       })
+//       return res.json(res)
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message)
+//     }
+//   }
+// )
+
 export const newsSlice = createSlice({
   name: "news",
   initialState,
@@ -73,7 +118,6 @@ export const newsSlice = createSlice({
         state.loading = false
         state.error = null
       })
-
       .addCase(fetchNews.rejected, (state, action) => {
         state.error = "При запросе на сервер произошла ошибка"
         state.loading = false
@@ -81,12 +125,21 @@ export const newsSlice = createSlice({
       .addCase(fetchNews.pending, (state, action) => {
         state.loading = true
       })
-    // .addCase(postNews.fulfilled, (state, action) => {
-    //   state.news.push(action.payload)
-    // })
-    // .addCase(postNews.rejected, (state, action) => {
-    //   state.loading = false
-    //   state.error = action.payload
+      .addCase(addLike.fulfilled, (state, action) => {
+        state.news = state.news.map((item) => {
+          if (item._id === action.payload._id) {
+            return action.payload
+          }
+          return item
+        })
+      })
+    // .addCase(disLike.fulfilled, (state, action) => {
+    //   state.news = state.news.map((item) => {
+    //     if (item._id === action.payload._id) {
+    //       return action.payload
+    //     }
+    //     return item
+    //   })
     // })
   },
 })

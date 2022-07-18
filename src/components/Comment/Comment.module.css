@@ -10,3 +10,20 @@
   font-weight: 400;
   padding: 20px;
 }
+
+.com_item {
+  position: relative;
+}
+
+.com_item span {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #ee002d;
+  cursor: pointer;
+}
+
+.del_com {
+  width: 18px;
+  height: 18px;
+}

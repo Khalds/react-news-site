@@ -27,8 +27,7 @@ function PopularNewsSidebar() {
                       <div className={styles.title}>
                         <h6>
                           <Link to={`/news/${news._id}`}>
-                            {news.title.split(" ").slice(0, 12).join(" ") +
-                              "..."}
+                            {news.text.split(" ").slice(0, 11).join(" ")}
                           </Link>
                         </h6>
                       </div>

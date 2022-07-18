@@ -8,7 +8,15 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
+}
+.com_list_active {
+  padding-left: 40px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-bottom: 2px solid #ee002d;
 }
 
 .com_input {
@@ -16,6 +24,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .com_input input {
@@ -28,7 +37,6 @@
   cursor: pointer;
   color: #393939;
   font-weight: 500;
-  margin-top: 50px;
 }
 
 .icon {
@@ -47,5 +55,5 @@
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
-  align-self: end;
+  margin-bottom: 20px;
 }

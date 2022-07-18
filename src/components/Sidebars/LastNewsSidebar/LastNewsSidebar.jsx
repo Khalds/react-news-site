@@ -30,7 +30,7 @@ function LastNewsSidebar() {
                 <div className={styles.title}>
                   <h3>
                     <Link to={`/news/${news._id}`}>
-                      {news.title.split(" ").slice(0, 9).join(" ") + "..."}
+                      {news.title.split(" ").slice(0, 7).join(" ")}
                     </Link>
                   </h3>
                 </div>

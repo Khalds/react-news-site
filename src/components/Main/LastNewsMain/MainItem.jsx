@@ -24,16 +24,18 @@ function MainItem({ news }) {
         </Link>
       </div>
       <div className={styles.title}>
-        <h1>
+        <h2>
           <Link to={`/news/${news._id}`}>
-            {news.title.split(" ").slice(0, 18).join(" ") + "..."}
+            {news.text.split(" ").length > 15
+              ? news.text.split(" ").slice(0, 16).join(" ") + "..."
+              : news.text}
           </Link>
-        </h1>
+        </h2>
       </div>
       <div className={styles.news_actions}>
         <div className={styles.likes}>
           <img className={styles.like_icon} src={likeIcon} />
-          <span className={styles.like_count}>392</span>
+          <span className={styles.like_count}>{news.like.length}</span>
         </div>
         <Link to={`/news/${news._id}`}>
           <div className={styles.comments}>

@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
 import { fetchUser } from "../../../features/auth/authSlice"
-import { fetchComments } from "../../../features/comments/commentsSlice"
-import { fetchNews } from "../../../features/news/newsSlice"
+import { addLike, fetchNews } from "../../../features/news/newsSlice"
 import Comments from "../../Comments/Comments"
 import Footer from "../../Footer/Footer"
 import Header from "../../Header/Header"
@@ -18,6 +17,9 @@ function Post() {
   const comments = useSelector((state) => state.coms.comments)
   const catigories = useSelector((state) => state.cat.categories)
 
+  const userId = useSelector((state) => state.auth.userId)
+  const newsLike = useSelector((state) => state.news.like)
+
   const { id } = useParams()
 
   const dispatch = useDispatch()
@@ -26,6 +28,10 @@ function Post() {
     dispatch(fetchUser())
     dispatch(fetchNews())
   }, [dispatch])
+
+  const handleLike = () => {
+    dispatch(addLike({ id, userId }))
+  }
 
   return (
     <div className={styles.Post}>
@@ -64,9 +70,11 @@ function Post() {
                   <p>{news.text}</p>
                 </div>
                 <div className={styles.news_actions}>
-                  <div className={styles.likes}>
+                  <div onClick={handleLike} className={styles.likes}>
                     <img className={styles.like_icon} src={likeIcon} />
-                    <span className={styles.like_count}>392</span>
+                    <span className={styles.like_count}>
+                      {news.like.length}
+                    </span>
                   </div>
                   <div className={styles.comments}>
                     <img className={styles.comment_icon} src={commentIcon} />

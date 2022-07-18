@@ -38,14 +38,14 @@ function PopularNewsMain() {
                 <div className={styles.title}>
                   <h1>
                     <Link to={`/news/${news._id}`}>
-                      {news.title.split(" ").slice(0, 18).join(" ") + "..."}
+                      {news.text.split(" ").slice(0, 18).join(" ") + "..."}
                     </Link>
                   </h1>
                 </div>
                 <div className={styles.news_actions}>
                   <div className={styles.likes}>
                     <img className={styles.like_icon} src={likeIcon} />
-                    <span className={styles.like_count}>392</span>
+                    <span className={styles.like_count}>0</span>
                   </div>
                   <Link to={`/news/${news._id}`}>
                     <div className={styles.comments}>

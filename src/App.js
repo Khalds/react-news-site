@@ -5,6 +5,7 @@ import Home from "./components/pages/Homepage/Home/Home"
 import Signin from "./components/pages/Sign/Signin"
 import Signup from "./components/pages/Sign/Signup"
 import Post from "./components/pages/Post/Post"
+import CategoryPost from "./components/pages/CategoryPost/CategoryPost"
 
 export const likeIcon =
   "https://preview.colorlib.com/theme/newspaper/img/core-img/xlike.png.pagespeed.ic.IMHrmFwawC.webp"
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/news/:id" element={<Post />} />
+        <Route path="/news/category/:id" element={<CategoryPost />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </div>

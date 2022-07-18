@@ -35,7 +35,9 @@ function MainBigItem({ news }) {
         <div className={styles.title}>
           <h1>
             <Link to={`/news/${news._id}`}>
-              {news.title.split(" ").slice(0, 12).join(" ") + "..."}
+              {news.title.split(" ").length > 10
+                ? news.title.split(" ").slice(0, 11).join(" ") + "..."
+                : news.title}
             </Link>
           </h1>
         </div>
@@ -50,24 +52,27 @@ function MainBigItem({ news }) {
           </p>
         </div>
         <div className={styles.text}>
-          <p>{news.text}</p>
+          <p>{news.text.split(" ").slice(0, 60).join(" ")}</p>
         </div>
-        <div className={styles.news_actions}>
-          <div className={styles.likes}>
-            <img className={styles.like_icon} src={likeIcon} />
-            <span className={styles.like_count}>
-              {!news.like ? 0 : news.like.length}
-            </span>
-          </div>
-          <Link to={`/news/${news._id}`}>
-            <div className={styles.comments}>
-              <img className={styles.comment_icon} src={commentIcon} />
-              <span className={styles.comment_count}>
-                {comments.filter((comment) => comment.news === news._id).length}
-              </span>
+        <Link to={`/news/${news._id}`}>
+          <div className={styles.news_actions}>
+            <div className={styles.likes}>
+              <img className={styles.like_icon} src={likeIcon} />
+              <span className={styles.like_count}>{news.like.length}</span>
             </div>
-          </Link>
-        </div>
+            <Link to={`/news/${news._id}`}>
+              <div className={styles.comments}>
+                <img className={styles.comment_icon} src={commentIcon} />
+                <span className={styles.comment_count}>
+                  {
+                    comments.filter((comment) => comment.news === news._id)
+                      .length
+                  }
+                </span>
+              </div>
+            </Link>
+          </div>
+        </Link>
       </div>
     </>
   )

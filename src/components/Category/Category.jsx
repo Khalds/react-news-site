@@ -18,7 +18,7 @@ function Category() {
         .map((cat) => {
           return (
             <li key={cat._id}>
-              <Link to="/">{cat.name}</Link>
+              <Link to={`/news/category/${cat._id}`}>{cat.name}</Link>
             </li>
           )
         })

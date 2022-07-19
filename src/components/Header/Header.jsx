@@ -1,14 +1,22 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { removeToken } from "../../features/auth/authSlice"
+import { fetchUser, removeToken } from "../../features/auth/authSlice"
 import Category from "../Category/Category"
 import styles from "./Header.module.css"
 
+import { TbNewSection } from "react-icons/tb"
+import { ImUsers } from "react-icons/im"
+
 function Header() {
   const token = useSelector((state) => state.auth.token)
+  const login = useSelector((state) => state.auth.login)
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchUser())
+  }, [dispatch])
 
   const logOut = () => {
     dispatch(removeToken())
@@ -25,10 +33,20 @@ function Header() {
           </div>
           <nav className={styles.header_nav}>
             <ul>
+              <li>
+                <Link to="/users">
+                  All users <ImUsers />
+                </Link>
+              </li>
+              <li>
+                <Link to="/addnews">
+                  Add news <TbNewSection />
+                </Link>
+              </li>
               {token && (
                 <li>
                   <a href="/" onClick={logOut}>
-                    Log Out
+                    Log Out {login}
                   </a>
                 </li>
               )}

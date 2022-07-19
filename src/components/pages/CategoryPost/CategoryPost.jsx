@@ -19,6 +19,7 @@ function CategoryPost() {
 
   useEffect(() => {
     dispatch(fetchNews())
+    dispatch(fetchNews())
   }, [dispatch])
 
   return (
@@ -54,7 +55,9 @@ function CategoryPost() {
                   <div className={styles.news_actions}>
                     <div className={styles.likes}>
                       <img className={styles.like_icon} src={likeIcon} />
-                      <span className={styles.like_count}>392</span>
+                      <span className={styles.like_count}>
+                        {news.like.length}
+                      </span>
                     </div>
                     <Link to={`/news/${news._id}`}>
                       <div className={styles.comments}>

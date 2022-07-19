@@ -1,0 +1,6 @@
+.author_input,
+.title_input,
+.text_input,
+.category_input {
+  display: flex;
+}

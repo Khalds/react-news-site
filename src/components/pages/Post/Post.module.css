@@ -25,7 +25,7 @@
   display: flex;
   gap: 20px;
 }
-
+.dis_likes,
 .likes,
 .comments {
   display: flex;
@@ -36,6 +36,11 @@
 .likes span,
 .comments span {
   color: #828282;
+  font-size: 14px;
+  font-weight: 500;
+}
+.dis_likes span {
+  color: #ee002d;
   font-size: 14px;
   font-weight: 500;
 }
@@ -58,6 +63,7 @@
   font-weight: 600;
   font-size: 14px;
 }
+.dis_likes:hover,
 .likes:hover,
 .comments:hover {
   cursor: pointer;

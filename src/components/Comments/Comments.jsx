@@ -7,7 +7,7 @@ import {
   postComment,
 } from "../../features/comments/commentsSlice"
 
-import { AiFillPlusCircle, AiOutlineArrowDown } from "react-icons/ai"
+import { AiFillPlusCircle } from "react-icons/ai"
 
 import { fetchUser } from "../../features/auth/authSlice"
 

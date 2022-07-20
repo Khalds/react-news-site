@@ -22,46 +22,6 @@ export const fetchNews = createAsyncThunk("news/fetch", async (_, thunkAPI) => {
   }
 })
 
-// export const postNews = createAsyncThunk(
-//   "news/post",
-//   async (text, thunkAPI) => {
-//     const state = thunkAPI.getState()
-
-//     try {
-//       const res = await fetch("http://localhost:4000/news/post", {
-//         method: "POST",
-//         headers: {
-//           Authorization: `Bearer ${state.auth.token}`,
-//           "Content-Type": "auth/json",
-//         },
-
-//         body: JSON.stringify({ text }),
-//       })
-//       return await res.json()
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e)
-//     }
-//   }
-// )
-
-// export const removeNews = createAsyncThunk(
-//   "news/remove",
-//   async (id, thunkAPI) => {
-//     const state = thunkAPI.getState
-//     try {
-//       await fetch(`http://localhost:4000/news/post/:${id}`, {
-//         method: "DELETE",
-//         headers: {
-//           Authorization: `Bearer ${state.auth.token}`,
-//         },
-//       })
-//       return id
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e)
-//     }
-//   }
-// )
-
 export const addLike = createAsyncThunk(
   "newsLike/patch",
   async ({ id, userId }, thunkAPI) => {
@@ -77,7 +37,6 @@ export const addLike = createAsyncThunk(
           like: userId,
         }),
       })
-      console.log(id, userId)
       return res.json(res)
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message)
@@ -101,6 +60,49 @@ export const disLike = createAsyncThunk(
         }),
       })
       return res.json(res)
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message)
+    }
+  }
+)
+
+export const postNews = createAsyncThunk(
+  "news/post",
+  async ({ avatar, title, text, categor, authorId }, thunkAPI) => {
+    try {
+      console.log(avatar, title, text, categor, authorId)
+      const data = new FormData()
+
+      data.append("images", avatar)
+      data.append("title", title)
+      data.append("text", text)
+      data.append("category", categor)
+      data.append("author", authorId)
+
+      const res = await fetch(`http://localhost:4000/news`, {
+        method: "POST",
+
+        body: data,
+      })
+      return await res.json()
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e)
+    }
+  }
+)
+
+export const removeNews = createAsyncThunk(
+  "news/remove",
+  async (id, thunkAPI) => {
+    const state = thunkAPI.getState()
+    try {
+      await fetch(`http://localhost:4000/news/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${state.auth.token}`,
+        },
+      })
+      return id
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message)
     }
@@ -139,6 +141,14 @@ export const newsSlice = createSlice({
             return action.payload
           }
           return item
+        })
+      })
+      .addCase(postNews.fulfilled, (state, action) => {
+        state.news.push(action.payload)
+      })
+      .addCase(removeNews.fulfilled, (state, action) => {
+        state.news = state.news.filter((item) => {
+          return item._id !== action.payload
         })
       })
   },

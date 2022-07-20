@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
+import { MdDelete } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
 import { fetchUser } from "../../../features/auth/authSlice"
+import { removeNews } from "../../../features/news/newsSlice"
 
 import styles from "./LastNewsMain.module.css"
 
@@ -10,6 +12,7 @@ function MainBigItem({ news }) {
   const comments = useSelector((state) => state.coms.comments)
   const users = useSelector((state) => state.auth.users)
   const catigories = useSelector((state) => state.cat.categories)
+  const userId = useSelector((state) => state.auth.userId)
 
   const dispatch = useDispatch()
 
@@ -17,12 +20,16 @@ function MainBigItem({ news }) {
     dispatch(fetchUser())
   }, [dispatch])
 
+  const handleDelNews = (id) => {
+    dispatch(removeNews(id))
+  }
+
   return (
     <>
       <div className={styles.news_big_item}>
         <div className={styles.news_img}>
           <Link to={`/news/${news._id}`}>
-            <img src={news.img} alt="img" />
+            <img src={`http://localhost:4000/${news.images}`} alt="img" />
           </Link>
         </div>
         <div className={styles.category}>
@@ -54,25 +61,32 @@ function MainBigItem({ news }) {
         <div className={styles.text}>
           <p>{news.text.split(" ").slice(0, 60).join(" ")}</p>
         </div>
-        <Link to={`/news/${news._id}`}>
-          <div className={styles.news_actions}>
-            <div className={styles.likes}>
-              <img className={styles.like_icon} src={likeIcon} />
-              <span className={styles.like_count}>{news.like.length}</span>
-            </div>
-            <Link to={`/news/${news._id}`}>
+        <div className={styles.news_actions}>
+          <Link to={`/news/${news._id}`}>
+            <div className={styles.add_actions}>
+              <div className={styles.likes}>
+                <img className={styles.like_icon} src={likeIcon} />
+                <span className={styles.like_count}>{news.like.length}</span>
+              </div>
+
               <div className={styles.comments}>
                 <img className={styles.comment_icon} src={commentIcon} />
-                <span className={styles.comment_count}>
-                  {
-                    comments.filter((comment) => comment.news === news._id)
-                      .length
-                  }
-                </span>
+                <span className={styles.comment_count}>{comments.length}</span>
               </div>
-            </Link>
+            </div>
+          </Link>
+          <div className={styles.del_actions}>
+            {users.map((user) => {
+              if (user._id === userId && user.role === "admin") {
+                return (
+                  <span onClick={(e) => handleDelNews(news._id)}>
+                    <MdDelete className={styles.del_com} />
+                  </span>
+                )
+              }
+            })}
           </div>
-        </Link>
+        </div>
       </div>
     </>
   )

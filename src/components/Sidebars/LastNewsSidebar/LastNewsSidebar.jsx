@@ -16,7 +16,7 @@ function LastNewsSidebar() {
             <div key={news._id} className={styles.sidebar_item}>
               <div className={styles.sidebar_item_img}>
                 <Link to={`/news/${news._id}`}>
-                  <img src={news.img} alt="img" />
+                <img src={`http://localhost:4000/${news.images}`} alt="img" />
                 </Link>
               </div>
               <div className={styles.sidebar_item_inf}>

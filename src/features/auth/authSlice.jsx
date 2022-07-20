@@ -152,6 +152,7 @@ export const authSlice = createSlice({
         state.signIn = true
         state.token = action.payload.token
         state.userId = action.payload.userId
+        state.login = action.payload.login
       })
       .addCase(auth.pending, (state, action) => {
         state.signIn = false

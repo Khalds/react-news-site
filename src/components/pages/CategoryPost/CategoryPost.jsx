@@ -33,7 +33,10 @@ function CategoryPost() {
                 <div key={news._id} className={styles.news_item}>
                   <div className={styles.news_img}>
                     <Link to={`/news/${news._id}`}>
-                      <img src={news.img} alt="img" />
+                      <img
+                        src={`http://localhost:4000/${news.images}`}
+                        alt="img"
+                      />
                     </Link>
                   </div>
                   <div className={styles.category}>
@@ -47,7 +50,7 @@ function CategoryPost() {
                     <h1>
                       <Link to={`/news/${news._id}`}>
                         {news.text.split(" ").length > 15
-                          ? news.text.split(" ").slice(0, 18).join(" ") + "..."
+                          ? news.text.split(" ").slice(0, 14).join(" ") + "..."
                           : news.text}
                       </Link>
                     </h1>

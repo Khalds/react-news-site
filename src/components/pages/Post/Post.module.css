@@ -21,10 +21,6 @@
   object-position: 50% 10%;
 }
 
-.news_actions {
-  display: flex;
-  gap: 20px;
-}
 .dis_likes,
 .likes,
 .comments {
@@ -95,4 +91,25 @@
 }
 .Comments {
   margin-top: 60px;
+}
+
+.news_actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.add_actions {
+  display: flex;
+  gap: 20px;
+}
+
+.del_com {
+  color: #ee002d;
+
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  padding: 5px;
 }

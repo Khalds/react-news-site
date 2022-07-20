@@ -107,3 +107,11 @@
 .footer {
   margin-top: 80px;
 }
+
+.side {
+  flex: 1;
+}
+
+.title {
+  height: 140px;
+}

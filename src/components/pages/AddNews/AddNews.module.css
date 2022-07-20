@@ -1,6 +1,102 @@
+.img_input,
 .author_input,
 .title_input,
 .text_input,
 .category_input {
   display: flex;
+  align-items: center;
+}
+
+.container {
+  width: 65%;
+  margin: 80px auto;
+}
+
+.news_form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.news_form h2 {
+  color: #ee002d;
+  width: 100px;
+}
+
+.send_button {
+  text-align: right;
+}
+
+.send_button button {
+  background-color: #fff;
+  border: 1px solid #ee002d;
+  color: #ee002d;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  padding: 10px 30px;
+}
+
+.send_button button:hover {
+  color: #fff;
+  background-color: #ee002d;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.title_input input {
+  padding: 10px 15px 5px 15px;
+  width: 35%;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #393939;
+  cursor: pointer;
+  color: #393939;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.author_input p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #828282;
+}
+
+.category_input select {
+  padding: 5px 20px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #ee002d;
+  border: 1px solid #ee002d;
+  border-radius: 5px;
+  outline: none;
+}
+.category_input option {
+  color: #ee002d;
+  background-color: #fff;
+}
+.text_input {
+  align-items: start;
+}
+.text_input textarea {
+  font-size: 14px;
+  color: #393939;
+  outline: none;
+  border: 1px solid #393939;
+  border-radius: 5px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 15px 10px;
+  resize: none;
+}
+
+.img_input img {
+  width: 420px;
+  height: 300px;
+
+  object-fit: cover;
+  object-position: 50%;
+  cursor: pointer;
 }

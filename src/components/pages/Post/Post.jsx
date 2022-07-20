@@ -3,11 +3,18 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
 import { fetchUser } from "../../../features/auth/authSlice"
-import { addLike, disLike, fetchNews } from "../../../features/news/newsSlice"
+import {
+  addLike,
+  disLike,
+  fetchNews,
+  removeNews,
+} from "../../../features/news/newsSlice"
 import Comments from "../../Comments/Comments"
 import Footer from "../../Footer/Footer"
 import Header from "../../Header/Header"
 import LastNewsSidebar from "../../Sidebars/LastNewsSidebar/LastNewsSidebar"
+
+import { MdDelete } from "react-icons/md"
 
 import styles from "./Post.module.css"
 
@@ -36,6 +43,10 @@ function Post() {
     dispatch(disLike({ id, userId }))
   }
 
+  const handleDelNews = (id) => {
+    dispatch(removeNews(id))
+  }
+
   return (
     <div className={styles.Post}>
       <Header />
@@ -45,7 +56,7 @@ function Post() {
             return (
               <div key={news._id} className={styles.main_post}>
                 <div className={styles.news_img}>
-                  <img src={news.img} alt="img" />
+                  <img src={`http://localhost:4000/${news.images}`} alt="img" />
                 </div>
                 <div className={styles.category}>
                   <Link to={`/news/${news._id}`}>
@@ -73,28 +84,41 @@ function Post() {
                   <p>{news.text}</p>
                 </div>
                 <div className={styles.news_actions}>
-                  {news.like.find((like) => like === userId) === userId && (
-                    <div onClick={handleDisLike} className={styles.dis_likes}>
-                      <img className={styles.like_icon} src={likeIcon} />
-                      <span className={styles.like_count}>
-                        {news.like.length}
-                      </span>
-                    </div>
-                  )}
-                  {news.like.find((like) => like === userId) !== userId && (
-                    <div onClick={handleLike} className={styles.likes}>
-                      <img className={styles.like_icon} src={likeIcon} />
-                      <span className={styles.like_count}>
-                        {news.like.length}
-                      </span>
-                    </div>
-                  )}
+                  <div className={styles.add_actions}>
+                    {news.like.find((like) => like === userId) === userId && (
+                      <div onClick={handleDisLike} className={styles.dis_likes}>
+                        <img className={styles.like_icon} src={likeIcon} />
+                        <span className={styles.like_count}>
+                          {news.like.length}
+                        </span>
+                      </div>
+                    )}
+                    {news.like.find((like) => like === userId) !== userId && (
+                      <div onClick={handleLike} className={styles.likes}>
+                        <img className={styles.like_icon} src={likeIcon} />
+                        <span className={styles.like_count}>
+                          {news.like.length}
+                        </span>
+                      </div>
+                    )}
 
-                  <div className={styles.comments}>
-                    <img className={styles.comment_icon} src={commentIcon} />
-                    <span className={styles.comment_count}>
-                      {comments.length}
-                    </span>
+                    <div className={styles.comments}>
+                      <img className={styles.comment_icon} src={commentIcon} />
+                      <span className={styles.comment_count}>
+                        {comments.length}
+                      </span>
+                    </div>
+                  </div>
+                  <div className={styles.del_actions}>
+                    {users.map((user) => {
+                      if (user._id === userId && user.role === "admin") {
+                        return (
+                          <span onClick={(e) => handleDelNews(news._id)}>
+                            <MdDelete className={styles.del_com} />
+                          </span>
+                        )
+                      }
+                    })}
                   </div>
                 </div>
                 <div className={styles.Comments}>

@@ -10,7 +10,9 @@ import { ImUsers } from "react-icons/im"
 
 function Header() {
   const token = useSelector((state) => state.auth.token)
-  const login = useSelector((state) => state.auth.login)
+
+  const users = useSelector((state) => state.auth.users)
+  const userId = useSelector((state) => state.auth.userId)
 
   const dispatch = useDispatch()
 
@@ -33,22 +35,31 @@ function Header() {
           </div>
           <nav className={styles.header_nav}>
             <ul>
-              <li>
-                <Link to="/users">
-                  All users <ImUsers />
-                </Link>
-              </li>
-              <li>
-                <Link to="/addnews">
-                  Add news <TbNewSection />
-                </Link>
-              </li>
+              {users.map((user) => {
+                if (user._id === userId && user.role === "admin") {
+                  return (
+                    <li>
+                      <Link to="/users">
+                        All users <ImUsers />
+                      </Link>
+                    </li>
+                  )
+                }
+              })}
+
               {token && (
-                <li>
-                  <a href="/" onClick={logOut}>
-                    Log Out {login}
-                  </a>
-                </li>
+                <>
+                  <li>
+                    <Link to="/addnews">
+                      Add news <TbNewSection />
+                    </Link>
+                  </li>
+                  <li>
+                    <a href="/" onClick={logOut}>
+                      Log Out
+                    </a>
+                  </li>
+                </>
               )}
               {!token && (
                 <>

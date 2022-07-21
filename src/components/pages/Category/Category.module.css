@@ -1,0 +1,88 @@
+.container {
+  width: 80%;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.add_cat {
+  border-bottom: 1px solid #ee002d;
+  padding-bottom: 40px;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.all_users {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.cat_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 25%;
+  padding: 30px 20px;
+  border: 1px solid #ee002d;
+  border-radius: 5px;
+  font-size: 24px;
+}
+.cat_item a {
+  color: #828282;
+  font-weight: 500;
+}
+.cat_item a:hover {
+  color: #ee002d;
+  transition: 1s;
+}
+
+.cat_del button {
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #ee002d;
+  border: 1px solid #ee002d;
+}
+
+.cat_del button:active {
+  background-color: #fff;
+  color: #ee002d;
+}
+
+.cat_input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.cat_input input {
+  padding: 10px 15px 5px 15px;
+  width: 25%;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #828282;
+  cursor: pointer;
+  color: #828282;
+}
+
+.icon {
+  height: 22px;
+  width: 22px;
+  padding: 10px;
+  cursor: pointer;
+  color: #ee002d;
+}
+.icon:active {
+  color: #393939;
+}

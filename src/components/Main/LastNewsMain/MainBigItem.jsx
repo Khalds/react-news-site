@@ -71,13 +71,21 @@ function MainBigItem({ news }) {
 
               <div className={styles.comments}>
                 <img className={styles.comment_icon} src={commentIcon} />
-                <span className={styles.comment_count}>{comments.length}</span>
+                <span className={styles.comment_count}>
+                  {
+                    comments.filter((comment) => comment.news === news._id)
+                      .length
+                  }
+                </span>
               </div>
             </div>
           </Link>
           <div className={styles.del_actions}>
             {users.map((user) => {
-              if (user._id === userId && user.role === "admin") {
+              if (
+                (user._id === userId && user.role === "admin") ||
+                (user._id === userId && userId === news.author)
+              ) {
                 return (
                   <span onClick={(e) => handleDelNews(news._id)}>
                     <MdDelete className={styles.del_com} />

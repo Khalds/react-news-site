@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { fetchUser, removeToken } from "../../features/auth/authSlice"
-import Category from "../Category/Category"
+import Category from "../pages/Category/Category"
 import styles from "./Header.module.css"
 
 import { TbNewSection } from "react-icons/tb"
@@ -10,6 +10,7 @@ import { ImUsers } from "react-icons/im"
 
 function Header() {
   const token = useSelector((state) => state.auth.token)
+  const catigories = useSelector((state) => state.cat.categories)
 
   const users = useSelector((state) => state.auth.users)
   const userId = useSelector((state) => state.auth.userId)
@@ -38,11 +39,23 @@ function Header() {
               {users.map((user) => {
                 if (user._id === userId && user.role === "admin") {
                   return (
-                    <li>
-                      <Link to="/users">
-                        All users <ImUsers />
-                      </Link>
-                    </li>
+                    <>
+                      <li>
+                        <Link to="/approved">
+                          Approved news <ImUsers />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/users">
+                          All users <ImUsers />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/category">
+                          All category <ImUsers />
+                        </Link>
+                      </li>
+                    </>
                   )
                 }
               })}
@@ -81,7 +94,15 @@ function Header() {
       <div className={styles.header_category}>
         <nav>
           <ul>
-            <Category />
+            {catigories
+              .map((cat) => {
+                return (
+                  <li>
+                    <Category key={cat._id} cat={cat} />
+                  </li>
+                )
+              })
+              .slice(0, 6)}
           </ul>
         </nav>
       </div>

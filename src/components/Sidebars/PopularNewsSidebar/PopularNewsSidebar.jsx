@@ -20,21 +20,22 @@ function PopularNewsSidebar() {
           <div className={styles.sidebar_news}>
             {newses
               .map((news, idx) => {
-                return (
-                  <div key={news._id} className={styles.news_item}>
-                    <div className={styles.news_idx}>{idx + 1}.</div>
-                    <div className={styles.news_inf}>
-                      <div className={styles.title}>
-                        <h6>
-                          <Link to={`/news/${news._id}`}>
-                            {news.text.split(" ").slice(0, 11).join(" ")}
-                          </Link>
-                        </h6>
+                if (news.approved === true)
+                  return (
+                    <div key={news._id} className={styles.news_item}>
+                      <div className={styles.news_idx}>{idx + 1}.</div>
+                      <div className={styles.news_inf}>
+                        <div className={styles.title}>
+                          <h6>
+                            <Link to={`/news/${news._id}`}>
+                              {news.text.split(" ").slice(0, 11).join(" ")}
+                            </Link>
+                          </h6>
+                        </div>
+                        <div className={styles.date}>APRIL 14, 2018</div>
                       </div>
-                      <div className={styles.date}>APRIL 14, 2018</div>
                     </div>
-                  </div>
-                )
+                  )
               })
               .slice(0, 4)}
           </div>

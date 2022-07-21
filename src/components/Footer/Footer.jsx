@@ -1,9 +1,12 @@
 import React from "react"
-import Category from "../Category/Category"
+import { useSelector } from "react-redux"
+import Category from "../pages/Category/Category"
 
 import styles from "./Footer.module.css"
 
 function Footer() {
+  const catigories = useSelector((state) => state.cat.categories)
+
   return (
     <div className={styles.footer}>
       <div className={styles.footer_inf}>
@@ -12,7 +15,15 @@ function Footer() {
         </div>
         <div className={styles.category}>
           <ul>
-            <Category />
+            {catigories
+              .map((cat) => {
+                return (
+                  <li>
+                    <Category key={cat._id} cat={cat} />
+                  </li>
+                )
+              })
+              .slice(0, 6)}
           </ul>
         </div>
         <div className={styles.contacts}>

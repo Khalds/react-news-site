@@ -9,6 +9,8 @@ import CategoryPost from "./components/pages/CategoryPost/CategoryPost"
 import Users from "./components/pages/Users/Users"
 import AddNews from "./components/pages/AddNews/AddNews"
 import { useSelector } from "react-redux"
+import Categories from "./components/pages/Category/Categories"
+import ApprovedNews from "./components/pages/ApprovedNews/ApprovedNews"
 
 export const likeIcon =
   "https://preview.colorlib.com/theme/newspaper/img/core-img/xlike.png.pagespeed.ic.IMHrmFwawC.webp"
@@ -30,7 +32,13 @@ function App() {
 
           {users.map((user) => {
             if (user._id === userId && user.role === "admin") {
-              return <Route path="/users" element={<Users />} />
+              return (
+                <>
+                  <Route path="/users" element={<Users />} />
+                  <Route path="/approved" element={<ApprovedNews />} />
+                  <Route path="/category" element={<Categories />} />
+                </>
+              )
             }
           })}
           <Route path="/addnews" element={<AddNews />} />

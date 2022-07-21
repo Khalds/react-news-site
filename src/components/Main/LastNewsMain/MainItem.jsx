@@ -52,7 +52,9 @@ function MainItem({ news }) {
 
             <div className={styles.comments}>
               <img className={styles.comment_icon} src={commentIcon} />
-              <span className={styles.comment_count}>{comments.length}</span>
+              <span className={styles.comment_count}>
+                {comments.filter((comment) => comment.news === news._id).length}
+              </span>
             </div>
           </div>
         </Link>

@@ -7,6 +7,7 @@ import Footer from "../../Footer/Footer"
 
 import iconNews from "../../image/news_img.png"
 import { postNews } from "../../../features/news/newsSlice"
+import { useNavigate } from "react-router-dom"
 
 function AddNews() {
   const category = useSelector((state) => state.cat.categories)
@@ -22,6 +23,7 @@ function AddNews() {
   const [categor, setCategor] = useState("")
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const sendFile = () => {
     if (avatar && title && text && categor) {
@@ -31,6 +33,8 @@ function AddNews() {
       setText("")
       setCategor("")
       setAvatar("")
+
+      navigate("/")
     }
     return
   }

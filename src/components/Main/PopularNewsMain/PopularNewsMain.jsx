@@ -31,64 +31,72 @@ function PopularNewsMain() {
       <div className={styles.main_news}>
         {newses
           .map((news) => {
-            return (
-              <div key={news._id} className={styles.news_item}>
-                <div className={styles.news_img}>
-                  <Link to={`/news/${news._id}`}>
-                    <img
-                      src={`http://localhost:4000/${news.images}`}
-                      alt="img"
-                    />
-                  </Link>
-                </div>
-                <div className={styles.category}>
-                  <Link to={`/news/${news._id}`}>
-                    {catigories.map((cat) => {
-                      if (news.category === cat._id) return cat.name
-                    })}
-                  </Link>
-                </div>
-                <div className={styles.title}>
-                  <h1>
+            if (news.approved === true)
+              return (
+                <div key={news._id} className={styles.news_item}>
+                  <div className={styles.news_img}>
                     <Link to={`/news/${news._id}`}>
-                      {news.text.split(" ").slice(0, 12).join(" ") + "..."}
+                      <img
+                        src={`http://localhost:4000/${news.images}`}
+                        alt="img"
+                      />
                     </Link>
-                  </h1>
-                </div>
-                <div className={styles.news_actions}>
-                  <Link to={`/news/${news._id}`}>
-                    <div className={styles.add_actions}>
-                      <div className={styles.likes}>
-                        <img className={styles.like_icon} src={likeIcon} />
-                        <span className={styles.like_count}>
-                          {news.like.length}
-                        </span>
-                      </div>
-                      <div className={styles.comments}>
-                        <img
-                          className={styles.comment_icon}
-                          src={commentIcon}
-                        />
-                        <span className={styles.comment_count}>
-                          {comments.length}
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                  <div className={styles.del_actions}>
-                    {users.map((user) => {
-                      if (user._id === userId && user.role === "admin") {
-                        return (
-                          <span onClick={(e) => handleDelNews(news._id)}>
-                            <MdDelete className={styles.del_com} />
+                  </div>
+                  <div className={styles.category}>
+                    <Link to={`/news/${news._id}`}>
+                      {catigories.map((cat) => {
+                        if (news.category === cat._id) return cat.name
+                      })}
+                    </Link>
+                  </div>
+                  <div className={styles.title}>
+                    <h1>
+                      <Link to={`/news/${news._id}`}>
+                        {news.text.split(" ").slice(0, 12).join(" ") + "..."}
+                      </Link>
+                    </h1>
+                  </div>
+                  <div className={styles.news_actions}>
+                    <Link to={`/news/${news._id}`}>
+                      <div className={styles.add_actions}>
+                        <div className={styles.likes}>
+                          <img className={styles.like_icon} src={likeIcon} />
+                          <span className={styles.like_count}>
+                            {news.like.length}
                           </span>
-                        )
-                      }
-                    })}
+                        </div>
+                        <div className={styles.comments}>
+                          <img
+                            className={styles.comment_icon}
+                            src={commentIcon}
+                          />
+                          <span className={styles.comment_count}>
+                            {
+                              comments.filter(
+                                (comment) => comment.news === news._id
+                              ).length
+                            }
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                    <div className={styles.del_actions}>
+                      {users.map((user) => {
+                        if (
+                          (user._id === userId && user.role === "admin") ||
+                          (user._id === userId && userId === news.author)
+                        ) {
+                          return (
+                            <span onClick={(e) => handleDelNews(news._id)}>
+                              <MdDelete className={styles.del_com} />
+                            </span>
+                          )
+                        }
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
+              )
           })
           .slice(0, 4)}
       </div>

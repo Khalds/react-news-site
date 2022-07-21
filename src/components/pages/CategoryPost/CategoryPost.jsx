@@ -1,8 +1,9 @@
 import React, { useEffect } from "react"
+import { MdDelete } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
-import { fetchNews } from "../../../features/news/newsSlice"
+import { fetchNews, removeNews } from "../../../features/news/newsSlice"
 import Footer from "../../Footer/Footer"
 import Header from "../../Header/Header"
 import LastNewsSidebar from "../../Sidebars/LastNewsSidebar/LastNewsSidebar"
@@ -13,9 +14,15 @@ function CategoryPost() {
 
   const newses = useSelector((state) => state.news.news)
   const comments = useSelector((state) => state.coms.comments)
+  const users = useSelector((state) => state.auth.users)
   const catigories = useSelector((state) => state.cat.categories)
+  const userId = useSelector((state) => state.auth.userId)
 
   const dispatch = useDispatch()
+
+  const handleDelNews = (id) => {
+    dispatch(removeNews(id))
+  }
 
   useEffect(() => {
     dispatch(fetchNews())
@@ -28,7 +35,7 @@ function CategoryPost() {
       <div className={styles.main}>
         <div className={styles.main_news}>
           {newses.map((news) => {
-            if (id === news.category)
+            if (id === news.category && news.approved === true)
               return (
                 <div key={news._id} className={styles.news_item}>
                   <div className={styles.news_img}>
@@ -56,27 +63,43 @@ function CategoryPost() {
                     </h1>
                   </div>
                   <div className={styles.news_actions}>
-                    <div className={styles.likes}>
-                      <img className={styles.like_icon} src={likeIcon} />
-                      <span className={styles.like_count}>
-                        {news.like.length}
-                      </span>
-                    </div>
                     <Link to={`/news/${news._id}`}>
-                      <div className={styles.comments}>
-                        <img
-                          className={styles.comment_icon}
-                          src={commentIcon}
-                        />
-                        <span className={styles.comment_count}>
-                          {
-                            comments.filter(
-                              (comment) => comment.news === news._id
-                            ).length
-                          }
-                        </span>
+                      <div className={styles.add_actions}>
+                        <div className={styles.likes}>
+                          <img className={styles.like_icon} src={likeIcon} />
+                          <span className={styles.like_count}>
+                            {news.like.length}
+                          </span>
+                        </div>
+                        <div className={styles.comments}>
+                          <img
+                            className={styles.comment_icon}
+                            src={commentIcon}
+                          />
+                          <span className={styles.comment_count}>
+                            {
+                              comments.filter(
+                                (comment) => comment.news === news._id
+                              ).length
+                            }
+                          </span>
+                        </div>
                       </div>
                     </Link>
+                    <div className={styles.del_actions}>
+                      {users.map((user) => {
+                        if (
+                          (user._id === userId && user.role === "admin") ||
+                          (user._id === userId && userId === news.author)
+                        ) {
+                          return (
+                            <span onClick={(e) => handleDelNews(news._id)}>
+                              <MdDelete className={styles.del_com} />
+                            </span>
+                          )
+                        }
+                      })}
+                    </div>
                   </div>
                 </div>
               )

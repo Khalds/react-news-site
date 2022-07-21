@@ -111,7 +111,10 @@ function Post() {
                   </div>
                   <div className={styles.del_actions}>
                     {users.map((user) => {
-                      if (user._id === userId && user.role === "admin") {
+                      if (
+                        (user._id === userId && user.role === "admin") ||
+                        (user._id === userId && userId === news.author)
+                      ) {
                         return (
                           <span onClick={(e) => handleDelNews(news._id)}>
                             <MdDelete className={styles.del_com} />

@@ -12,34 +12,38 @@ function LastNewsSidebar() {
     <div className={styles.Sidebar}>
       {newss
         .map((news) => {
-          return (
-            <div key={news._id} className={styles.sidebar_item}>
-              <div className={styles.sidebar_item_img}>
-                <Link to={`/news/${news._id}`}>
-                <img src={`http://localhost:4000/${news.images}`} alt="img" />
-                </Link>
-              </div>
-              <div className={styles.sidebar_item_inf}>
-                <div className={styles.category}>
+          if (news.approved === true)
+            return (
+              <div key={news._id} className={styles.sidebar_item}>
+                <div className={styles.sidebar_item_img}>
                   <Link to={`/news/${news._id}`}>
-                    {catigories.map((cat) => {
-                      if (news.category === cat._id) return cat.name
-                    })}
+                    <img
+                      src={`http://localhost:4000/${news.images}`}
+                      alt="img"
+                    />
                   </Link>
                 </div>
-                <div className={styles.title}>
-                  <h3>
+                <div className={styles.sidebar_item_inf}>
+                  <div className={styles.category}>
                     <Link to={`/news/${news._id}`}>
-                      {news.title.split(" ").slice(0, 7).join(" ")}
+                      {catigories.map((cat) => {
+                        if (news.category === cat._id) return cat.name
+                      })}
                     </Link>
-                  </h3>
-                </div>
-                <div className={styles.date}>
-                  <span>7:00 AM</span> || <span>April 14</span>
+                  </div>
+                  <div className={styles.title}>
+                    <h3>
+                      <Link to={`/news/${news._id}`}>
+                        {news.title.split(" ").slice(0, 7).join(" ")}
+                      </Link>
+                    </h3>
+                  </div>
+                  <div className={styles.date}>
+                    <span>7:00 AM</span> || <span>April 14</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          )
+            )
         })
         .slice(0, 6)}
     </div>

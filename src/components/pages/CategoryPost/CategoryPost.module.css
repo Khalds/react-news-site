@@ -50,12 +50,7 @@
   height: 300px;
 
   object-fit: cover;
-  object-position: 50% 10%;
-}
-
-.news_actions {
-  display: flex;
-  gap: 20px;
+  object-position: 50%;
 }
 
 .likes,
@@ -114,4 +109,23 @@
 
 .title {
   height: 140px;
+}
+
+.news_actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.add_actions {
+  display: flex;
+  gap: 20px;
+}
+
+.del_com {
+  color: #ee002d;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
 }

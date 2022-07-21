@@ -1,0 +1,87 @@
+.container {
+  width: 70%;
+  min-height: 30vh;
+  margin: 80px auto;
+}
+
+.container h1 {
+  color: #ee002d;
+}
+
+.all_news {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.news_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  box-shadow: rgba(26, 17, 17, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  position: relative;
+}
+
+.news_img img {
+  width: 120px;
+  height: 120px;
+
+  object-fit: cover;
+  object-position: 50%;
+}
+
+.news_inf {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.news_title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ee002d;
+}
+
+.news_text {
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.news_actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.news_actions button {
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #ee002d;
+  border: 1px solid #ee002d;
+}
+
+.news_actions button:active {
+  background-color: #fff;
+  color: #ee002d;
+}
+
+.del_com {
+  align-self: end;
+  color: #ee002d;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.del_news {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

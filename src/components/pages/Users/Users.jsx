@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchUser } from "../../../features/auth/authSlice"
+import Footer from "../../Footer/Footer"
 import Header from "../../Header/Header"
 import User from "./User"
 import styles from "./Users.module.css"
@@ -24,6 +25,7 @@ function Users() {
           })}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

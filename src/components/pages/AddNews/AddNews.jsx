@@ -16,7 +16,7 @@ function AddNews() {
   const authorId = useSelector((state) => state.auth.userId)
 
   const [preview, setPreview] = useState("")
-  const [avatar, setAvatar] = useState("")
+  const [photo, setPhoto] = useState("")
 
   const [title, setTitle] = useState("")
   const [text, setText] = useState("")
@@ -26,13 +26,13 @@ function AddNews() {
   const navigate = useNavigate()
 
   const sendFile = () => {
-    if (avatar && title && text && categor) {
-      dispatch(postNews({ avatar, title, text, categor, authorId }))
+    if (photo && title && text && categor) {
+      dispatch(postNews({ photo, title, text, categor, authorId }))
 
       setTitle("")
       setText("")
       setCategor("")
-      setAvatar("")
+      setPhoto("")
 
       navigate("/")
     }
@@ -40,16 +40,16 @@ function AddNews() {
   }
 
   useEffect(() => {
-    if (avatar) {
+    if (photo) {
       const reader = new FileReader()
       reader.onloadend = () => {
         setPreview(reader.result)
       }
-      reader.readAsDataURL(avatar)
+      reader.readAsDataURL(photo)
     } else {
       setPreview(null)
     }
-  }, [dispatch, avatar])
+  }, [dispatch, photo])
 
   return (
     <div className={styles.AddNews}>
@@ -59,11 +59,11 @@ function AddNews() {
           <div className={styles.img_input}>
             <h2>IMG:</h2>
 
-            <label htmlFor="img" className={styles.avatar}>
-              {avatar ? (
-                <img className={styles.logo} src={preview} alt="avatar" />
+            <label htmlFor="img" className={styles.photo}>
+              {photo ? (
+                <img className={styles.logo} src={preview} alt="photo" />
               ) : (
-                <img className={styles.logo} src={`${iconNews}`} alt="avatar" />
+                <img className={styles.logo} src={`${iconNews}`} alt="photo" />
               )}
             </label>
             <input
@@ -73,9 +73,9 @@ function AddNews() {
               onChange={(e) => {
                 const file = e.target.files[0]
                 if (file && file.type.substring(0, 5) === "image") {
-                  setAvatar(file)
+                  setPhoto(file)
                 } else {
-                  setAvatar(null)
+                  setPhoto(null)
                 }
               }}
             />

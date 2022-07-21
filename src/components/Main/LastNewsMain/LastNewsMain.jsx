@@ -23,8 +23,7 @@ function LastNewsMain() {
       <div className={styles.main_big_block}>
         {newses
           .map((news) => {
-            if (news.approved === true)
-              return <MainBigItem key={news._id} news={news} />
+            return <MainBigItem key={news._id} news={news} />
           })
           .reverse()
           .slice(0, 1)}
@@ -32,8 +31,7 @@ function LastNewsMain() {
       <div className={styles.main_min}>
         {newses
           .map((news) => {
-            if (news.approved === true)
-              return <MainItem key={news._id} news={news} />
+            return <MainItem key={news._id} news={news} />
           })
           .reverse()
           .slice(1, 3)}

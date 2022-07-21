@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { commentIcon, likeIcon } from "../../../App"
 import { fetchUser } from "../../../features/auth/authSlice"
 import {
@@ -29,6 +29,7 @@ function Post() {
   const { id } = useParams()
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchUser())
@@ -45,6 +46,7 @@ function Post() {
 
   const handleDelNews = (id) => {
     dispatch(removeNews(id))
+    navigate("/")
   }
 
   return (
@@ -111,10 +113,7 @@ function Post() {
                   </div>
                   <div className={styles.del_actions}>
                     {users.map((user) => {
-                      if (
-                        (user._id === userId && user.role === "admin") ||
-                        (user._id === userId && userId === news.author)
-                      ) {
+                      if (user._id === userId && user.role === "admin") {
                         return (
                           <span onClick={(e) => handleDelNews(news._id)}>
                             <MdDelete className={styles.del_com} />

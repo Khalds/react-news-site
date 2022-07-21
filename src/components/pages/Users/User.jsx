@@ -25,8 +25,8 @@ function User({ user }) {
 
   return (
     <div className={styles.user_card}>
-      <div className={styles.user_avatar}>
-        <FaUserCircle className={styles.avatar} />
+      <div className={styles.user_photo}>
+        <FaUserCircle className={styles.photo} />
       </div>
       <div className={styles.user_info}>
         <div className={styles.user_name}>

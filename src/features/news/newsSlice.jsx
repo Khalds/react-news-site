@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   news: [],
+  approved: [],
   error: null,
   loading: null,
 }
@@ -11,6 +12,8 @@ export const fetchNews = createAsyncThunk("news/fetch", async (_, thunkAPI) => {
     const res = await fetch(`http://localhost:4000/news`)
 
     const json = await res.json()
+
+    console.log(json)
 
     if (json.error) {
       return thunkAPI.rejectWithValue(json.error)
@@ -66,14 +69,36 @@ export const disLike = createAsyncThunk(
   }
 )
 
+export const newsApproved = createAsyncThunk(
+  "newsApproved/patch",
+  async (id, thunkAPI) => {
+    const state = thunkAPI.getState()
+    try {
+      const res = await fetch(`http://localhost:4000/news/${id}/approved`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${state.auth.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          approved: true,
+        }),
+      })
+      return res.json(res)
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message)
+    }
+  }
+)
+
 export const postNews = createAsyncThunk(
   "news/post",
-  async ({ avatar, title, text, categor, authorId }, thunkAPI) => {
+  async ({ photo, title, text, categor, authorId }, thunkAPI) => {
     try {
-      console.log(avatar, title, text, categor, authorId)
+      console.log(photo, title, text, categor, authorId)
       const data = new FormData()
 
-      data.append("images", avatar)
+      data.append("images", photo)
       data.append("title", title)
       data.append("text", text)
       data.append("category", categor)
@@ -116,7 +141,10 @@ export const newsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchNews.fulfilled, (state, action) => {
-        state.news = action.payload
+        state.news = action.payload.allNews
+
+        state.approved = action.payload.approvedNews
+
         state.loading = false
         state.error = null
       })
@@ -135,6 +163,13 @@ export const newsSlice = createSlice({
           return item
         })
       })
+
+      .addCase(newsApproved.fulfilled, (state, action) => {
+        state.approved = state.approved.filter(
+          (item) => item._id !== action.payload._id
+        )
+      })
+
       .addCase(disLike.fulfilled, (state, action) => {
         state.news = state.news.map((item) => {
           if (item._id === action.payload._id) {

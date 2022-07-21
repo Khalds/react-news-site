@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { fetchUser, removeToken } from "../../features/auth/authSlice"
@@ -7,6 +7,7 @@ import styles from "./Header.module.css"
 
 import { TbNewSection } from "react-icons/tb"
 import { ImUsers } from "react-icons/im"
+import { FaRegUserCircle, FaUser, FaUserSecret } from "react-icons/fa"
 
 function Header() {
   const token = useSelector((state) => state.auth.token)
@@ -14,6 +15,8 @@ function Header() {
 
   const users = useSelector((state) => state.auth.users)
   const userId = useSelector((state) => state.auth.userId)
+
+  const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -23,6 +26,10 @@ function Header() {
 
   const logOut = () => {
     dispatch(removeToken())
+  }
+
+  const handleOpen = () => {
+    setOpen(!open)
   }
 
   return (
@@ -35,59 +42,62 @@ function Header() {
             </h1>
           </div>
           <nav className={styles.header_nav}>
-            <ul>
-              {users.map((user) => {
-                if (user._id === userId && user.role === "admin") {
-                  return (
-                    <>
-                      <li>
-                        <Link to="/approved">
-                          Approved news <ImUsers />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/users">
-                          All users <ImUsers />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/category">
-                          All category <ImUsers />
-                        </Link>
-                      </li>
-                    </>
-                  )
-                }
-              })}
+            {open && (
+              <ul>
+                {users.map((user) => {
+                  if (user._id === userId && user.role === "admin") {
+                    return (
+                      <>
+                        <li>
+                          <Link to="/approved">
+                            Approved news <ImUsers />
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/users">
+                            All users <ImUsers />
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/category">
+                            All category <ImUsers />
+                          </Link>
+                        </li>
+                      </>
+                    )
+                  }
+                })}
 
-              {token && (
-                <>
-                  <li>
-                    <Link to="/addnews">
-                      Add news <TbNewSection />
-                    </Link>
-                  </li>
-                  <li>
-                    <a href="/" onClick={logOut}>
-                      Log Out
-                    </a>
-                  </li>
-                </>
-              )}
-              {!token && (
-                <>
-                  <li>
-                    <Link to="/signin">Login</Link>
-                  </li>
-                  <li>
-                    <Link to="/signup">Register</Link>
-                  </li>
-                </>
-              )}
-              <li>
-                <input type="text" placeholder="Search" />
-              </li>
-            </ul>
+                {token && (
+                  <>
+                    <li>
+                      <Link to="/addnews">
+                        Add news <TbNewSection />
+                      </Link>
+                    </li>
+                    <li>
+                      <a href="/" onClick={logOut}>
+                        Log Out
+                      </a>
+                    </li>
+                  </>
+                )}
+                {!token && (
+                  <>
+                    <li>
+                      <Link to="/signin">Login</Link>
+                    </li>
+                    <li>
+                      <Link to="/signup">Register</Link>
+                    </li>
+                  </>
+                )}
+                {/* <li>
+                  <input type="text" placeholder="Search" />
+                </li> */}
+              </ul>
+            )}
+            <FaUser onClick={handleOpen} className={styles.profile} />
           </nav>
         </div>
       </div>

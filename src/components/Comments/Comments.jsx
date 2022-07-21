@@ -16,7 +16,9 @@ function Comments({ id }) {
   const token = useSelector((state) => state.auth.token)
 
   const [text, setText] = useState("")
-  const [open, setOpen] = useState("false")
+
+  const [open, setOpen] = useState(false)
+
   const [openText, setOpenText] = useState("Еще коментарии ▼")
 
   const userId = localStorage.getItem("userId")
@@ -65,6 +67,7 @@ function Comments({ id }) {
               return <Comment key={coms._id} coms={coms} />
             })
             .slice(0, 2)}
+
         {!open &&
           comments.map((coms) => {
             return <Comment key={coms._id} coms={coms} />

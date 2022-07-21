@@ -32,6 +32,11 @@
   font-size: 14px;
   font-weight: 500;
 }
+.header_nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
 
 .header_nav ul a:hover {
   border-bottom: 2px solid #fff;
@@ -80,4 +85,11 @@
 .header_category a:hover {
   color: #ee002d;
   transition: 0.5s;
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  cursor: pointer;
 }

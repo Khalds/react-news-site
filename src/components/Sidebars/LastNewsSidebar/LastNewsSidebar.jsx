@@ -12,7 +12,6 @@ function LastNewsSidebar() {
     <div className={styles.Sidebar}>
       {newss
         .map((news) => {
-          if (news.approved === true)
             return (
               <div key={news._id} className={styles.sidebar_item}>
                 <div className={styles.sidebar_item_img}>

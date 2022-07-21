@@ -58,17 +58,6 @@ function MainItem({ news }) {
             </div>
           </div>
         </Link>
-        <div className={styles.del_actions}>
-          {users.map((user) => {
-            if (user._id === userId && user.role === "admin") {
-              return (
-                <span onClick={(e) => handleDelNews(news._id)}>
-                  <MdDelete className={styles.del_com} />
-                </span>
-              )
-            }
-          })}
-        </div>
       </div>
     </div>
   )
